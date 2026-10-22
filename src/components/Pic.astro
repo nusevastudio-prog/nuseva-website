@@ -1,0 +1,10 @@
+---
+import { Picture } from 'astro:assets';
+const imgs = import.meta.glob('../assets/img/*.jpg', { eager: true });
+const { name, alt = '', sizes = '100vw', class: cls = '', loading = 'lazy', widths = [480, 800, 1200, 1600, 2000], pos, ...rest } = Astro.props;
+const mod = imgs[`../assets/img/${name}.jpg`];
+if (!mod) throw new Error('Thiếu ảnh: ' + name);
+const src = mod.default;
+const w = widths.filter((x) => x <= src.width);
+---
+<Picture src={src} alt={alt} widths={w.length ? w : [src.width]} sizes={sizes} formats={['webp']} fallbackFormat="jpg" loading={loading} decoding="async" class={cls} style={pos ? `object-position:${pos}` : undefined} {...rest} />

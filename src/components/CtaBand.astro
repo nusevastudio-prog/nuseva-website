@@ -1,0 +1,25 @@
+---
+import Logo from './Logo.astro';
+import { site } from '../data/site.js';
+import { u } from '../lib/url.js';
+const { title = 'Buổi đầu tiên giảm 50%', text = 'Huấn luyện viên kiểm tra thể trạng, tư vấn lộ trình rồi cho bạn tập thử toàn thân. Biết là bận rồi, nhưng dành cho cơ thể 60 phút thôi mà.' } = Astro.props;
+---
+<section class="cta">
+  <div class="wrap cta-in">
+    <Logo kind="cat" class="cta-cat" />
+    <h2 class="d2" data-split>{title}</h2>
+    <p data-reveal>{text}</p>
+    <div class="cta-btns" data-reveal data-delay=".1">
+      <a class="btn btn-cream" href={u('lien-he')}>Đặt buổi tập thử</a>
+      <a class="btn" href={site.zalo} target="_blank" rel="noopener">Nhắn Zalo {site.hotline}</a>
+    </div>
+  </div>
+</section>
+<style>
+  .cta{background:var(--wine);color:var(--paper);padding:clamp(90px,12vw,170px) 0;overflow:hidden}
+  .cta-in{position:relative;text-align:center;display:flex;flex-direction:column;align-items:center}
+  .cta h2{max-width:14ch}
+  .cta p{max-width:48ch;margin:24px auto 36px;opacity:.88}
+  .cta-btns{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+  :global(.cta-cat){width:min(220px,46vw);height:auto;color:var(--batter);margin-bottom:36px}
+</style>

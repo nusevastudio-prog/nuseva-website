@@ -1,0 +1,7 @@
+---
+import logo from '../assets/logo.svg?raw';
+import cat from '../assets/cat.svg?raw';
+const { kind = 'logo', class: cls = '', ...rest } = Astro.props;
+const raw = (kind === 'cat' ? cat : logo).replace('<svg ', `<svg class="${cls}" role="img" aria-label="${kind === 'cat' ? '' : 'Nuseva Studio'}" ${kind === 'cat' ? 'aria-hidden="true"' : ''} `);
+---
+<Fragment set:html={raw} {...rest} />

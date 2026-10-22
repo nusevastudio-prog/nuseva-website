@@ -1,0 +1,65 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Pic from '../components/Pic.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { getImage } from 'astro:assets';
+const imgs = import.meta.glob('../assets/img/*.jpg', { eager: true });
+const photos = [
+  ['hang-reformer', 'Hàng máy Reformer'],
+  ['hlv-chinh-form', 'Huấn luyện viên chỉnh tư thế'],
+  ['lo-xo-mau', 'Lò xo màu của máy Reformer'],
+  ['yoga-gian-tay', 'Học viên giãn tay trên thảm'],
+  ['phong-tham-barre', 'Phòng thảm có gióng barre'],
+  ['bang-hieu-go', 'Biển hiệu Nuseva Studio'],
+  ['barre-tay-gong', 'Tay đặt trên gióng barre'],
+  ['phong-may-cadillac', 'Máy Cadillac'],
+  ['tham-nang-chan', 'Học viên tập nâng chân trên thảm'],
+  ['tham-cuon', 'Thảm tập trên giá gỗ'],
+  ['lop-tham-nhom', 'Lớp Pilates thảm nhóm'],
+  ['plank-tham', 'Plank trên thảm'],
+  ['reformer-chot-lo-xo', 'Chốt lò xo Reformer'],
+  ['tay-bong-tham', 'Bóng tập và gạch tập'],
+  ['mat-tien-cs2', 'Mặt tiền Nuseva Phan Đăng Lưu'],
+  ['lop-barre', 'Lớp Barre'],
+  ['buoc-vao-lop', 'Học viên bước vào lớp'],
+  ['phong-may-guong', 'Phòng máy có gương'],
+  ['hoc-vien-cam-tham', 'Học viên cầm thảm vào lớp'],
+  ['lop-tham-bong', 'Lớp thảm với bóng'],
+  ['cadillac-reformer', 'Cadillac và Reformer'],
+  ['phong-tham-trong', 'Phòng thảm trước giờ lớp'],
+];
+const full = await Promise.all(photos.map(([n]) => { const m = imgs[`../assets/img/${n}.jpg`].default; return getImage({ src: m, width: Math.min(m.width, 1800), format: "webp" }); }));
+---
+<Base title="Album ảnh" description="Ảnh thật ở Nuseva Studio: phòng máy, phòng thảm, lớp học và từng góc nhỏ ở Phan Đăng Lưu.">
+  <PageHero title="Album ảnh" intro="Ảnh chụp ở studio Phan Đăng Lưu. Bấm vào ảnh để xem lớn." />
+  <section class="wrap grid">
+    {photos.map(([n, a], i) => (
+      <button class="it" data-full={full[i].src} data-lb aria-label={`Xem lớn: ${a}`} data-reveal><Pic name={n} alt={a} sizes="(min-width: 900px) 33vw, 50vw" /></button>
+    ))}
+  </section>
+  <dialog class="lb" data-lightbox aria-label="Xem ảnh">
+    <img alt="" />
+    <button class="lb-x" data-close aria-label="Đóng">Đóng</button>
+    <button class="lb-p" data-prev aria-label="Ảnh trước">‹</button>
+    <button class="lb-n" data-next aria-label="Ảnh sau">›</button>
+  </dialog>
+  <div style="height:clamp(80px,10vw,140px)"></div>
+  <CtaBand />
+</Base>
+<style>
+  .grid{columns:3;column-gap:20px}
+  .it{display:block;width:100%;margin-bottom:20px;border-radius:var(--r);overflow:hidden;break-inside:avoid;cursor:zoom-in}
+  .it :global(picture){height:auto}
+  .it :global(img){height:auto;transition:transform 1.2s var(--ease)}
+  .it:hover :global(img){transform:scale(1.03)}
+  .lb{max-width:none;max-height:none;width:100vw;height:100dvh;border:0;background:rgba(43,28,17,.94);color:var(--paper);padding:0}
+  .lb[open]{display:flex;align-items:center;justify-content:center}
+  .lb::backdrop{background:transparent}
+  .lb img{max-width:min(92vw,1400px);max-height:84dvh;width:auto;height:auto;border-radius:12px;object-fit:contain}
+  .lb button{position:absolute;color:var(--paper);font:500 15px/1 var(--body);padding:14px}
+  .lb-x{top:16px;right:16px}
+  .lb-p,.lb-n{top:50%;transform:translateY(-50%);font-size:44px!important}
+  .lb-p{left:12px}.lb-n{right:12px}
+  @media (max-width:899px){.grid{columns:2;column-gap:12px}.it{margin-bottom:12px}}
+</style>

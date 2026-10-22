@@ -1,0 +1,58 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import Pic from '../../components/Pic.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { classes, studios } from '../../data/site.js';
+import { u } from '../../lib/url.js';
+const where = (c) => c.studios.length === 2 ? 'Cả 2 studio' : studios.find((s) => s.id === c.studios[0]).name;
+---
+<Base title="Lớp học" description="5 lớp ở Nuseva: Pilates máy, Pilates thảm, Barre, Yoga, Dance. Kèm riêng 1:1, 1:2 hoặc lớp nhóm 4–6 người. Mỗi buổi 60 phút.">
+  <PageHero title="Lớp học" intro="Năm lớp, ba hình thức: kèm riêng 1:1, kèm đôi 1:2 và lớp nhóm 4–6 người. Mỗi buổi 60 phút. Chưa biết chọn gì thì bắt đầu với Pilates máy." />
+
+  <section class="wrap list">
+    {classes.map((c, i) => (
+      <a class="row" href={u('lop-hoc/' + c.slug)} data-reveal>
+        <div class="row-pic" data-parallax><Pic name={c.image} alt={c.alt} sizes="(min-width: 900px) 36vw, 100vw" /></div>
+        <div class="row-txt">
+          <h2 class="d2">{c.name}</h2>
+          <p>{c.short}</p>
+          <dl>
+            <div><dt>Hình thức</dt><dd>{c.formats.join(', ')}</dd></div>
+            <div><dt>Trình độ</dt><dd>{c.level}</dd></div>
+            <div><dt>Ở đâu</dt><dd>{where(c)}</dd></div>
+          </dl>
+          <span class="link">Xem lớp {c.name}</span>
+        </div>
+      </a>
+    ))}
+  </section>
+
+  <section class="sec">
+    <div class="wrap">
+      <h2 class="d2" data-split>Ba hình thức tập</h2>
+      <div class="fm" data-stagger>
+        <div><h3 class="d3">1:1</h3><p>Một huấn luyện viên, một học viên. Giáo án viết riêng, theo sát từng động tác. Hợp người mới hoặc đang có vấn đề cột sống.</p></div>
+        <div><h3 class="d3">1:2</h3><p>Hai người tập cùng một huấn luyện viên. Đi với bạn hoặc người thân, vẫn được kèm sát.</p></div>
+        <div><h3 class="d3">Nhóm 4–6 người</h3><p>Pilates thảm, Barre, Yoga, Dance theo nhóm nhỏ. Chỉ có ở Phan Đăng Lưu.</p></div>
+      </div>
+    </div>
+  </section>
+  <CtaBand />
+</Base>
+<style>
+  .list{display:flex;flex-direction:column;gap:clamp(56px,8vw,120px);padding-bottom:clamp(40px,6vw,80px)}
+  .row{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(32px,5vw,80px);align-items:center}
+  .row:nth-child(even) .row-pic{order:2}
+  .row-pic{aspect-ratio:4/3;border-radius:var(--r);overflow:hidden}
+  .row-txt p{margin:16px 0 24px;max-width:44ch}
+  .row dl{border-top:1px solid var(--line);margin-bottom:24px}
+  .row dl div{display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px solid var(--line);font-size:14px}
+  .row dt{color:var(--caramel)}
+  .row:hover :global(img){transform:scale(1.03)}
+  .row :global(img){transition:transform 1.2s var(--ease)}
+  .fm{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:48px}
+  .fm div{border-top:1px solid var(--cocoa);padding-top:24px}
+  .fm p{margin-top:12px;max-width:36ch}
+  @media (max-width:899px){.row{grid-template-columns:1fr}.row:nth-child(even) .row-pic{order:0}.fm{grid-template-columns:1fr;gap:32px}}
+</style>

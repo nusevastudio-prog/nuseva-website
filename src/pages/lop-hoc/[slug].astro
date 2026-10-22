@@ -1,0 +1,93 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import Pic from '../../components/Pic.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { classes, studios, policies, site } from '../../data/site.js';
+import { u } from '../../lib/url.js';
+
+export function getStaticPaths() {
+  return classes.map((c) => ({ params: { slug: c.slug }, props: { c } }));
+}
+const { c } = Astro.props;
+const where = studios.filter((s) => c.studios.includes(s.id));
+const others = classes.filter((x) => x.slug !== c.slug);
+---
+<Base title={c.name} description={`${c.name} ở Nuseva Studio: ${c.short} ${c.duration} phút mỗi buổi, ${c.formats.join(', ')}. Giá từ ${c.priceFrom}/buổi.`}>
+  <PageHero kicker="Lớp học" title={c.name} intro={c.short} image={c.image} alt={c.alt}>
+    <div class="chips hero-chips" data-reveal data-delay=".25">{c.formats.map((f) => <span class="chip">{f}</span>)}<span class="chip">{c.duration} phút</span><span class="chip">{c.level}</span></div>
+  </PageHero>
+
+  <section class="sec">
+    <div class="wrap two">
+      <div>
+        <h2 class="d2" data-split>Dành cho ai</h2>
+      </div>
+      <ul class="who" data-stagger>{c.forWho.map((w) => <li>{w}</li>)}</ul>
+    </div>
+  </section>
+
+  <section class="sec body-sec">
+    <div class="wrap two">
+      <h2 class="d2" data-split>Một buổi tập</h2>
+      <div class="prose" data-reveal>
+        {c.body.map((p) => <p>{p}</p>)}
+        {c.styles && <div class="chips styles">{c.styles.map((s) => <span class="chip">{s}</span>)}</div>}
+        {c.equipment && <p class="muted eq">Dụng cụ: {c.equipment.join(', ')}.</p>}
+      </div>
+    </div>
+  </section>
+
+  <section class="sec facts-sec">
+    <div class="wrap">
+      <div class="facts">
+        <div><span>Hình thức</span><b>{c.formats.join(', ')}</b></div>
+        <div><span>Thời lượng</span><b>{c.duration} phút</b></div>
+        <div><span>Giá từ</span><b>{c.priceFrom}/buổi</b>{c.priceNote && <em>{c.priceNote}</em>}</div>
+        <div><span>Studio</span><b>{where.map((s) => s.name).join(' · ')}</b></div>
+      </div>
+      <p class="pol">{policies[0].a} {policies[1].a}</p>
+      <div class="acts">
+        <a class="btn btn-wine" href={u('lien-he')}>Đặt buổi tập thử</a>
+        <a class="btn btn-ghost" href={site.zalo} target="_blank" rel="noopener">Hỏi qua Zalo</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec more">
+    <div class="wrap">
+      <h2 class="d3">Các lớp khác</h2>
+      <div class="more-grid">
+        {others.map((o) => (
+          <a href={u('lop-hoc/' + o.slug)} class="more-item">
+            <div class="more-pic"><Pic name={o.image} alt={o.alt} sizes="(min-width: 900px) 24vw, 50vw" /></div>
+            <span class="d4">{o.name}</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+  <CtaBand />
+</Base>
+<style>
+  .hero-chips{margin-top:28px}
+  .two{display:grid;grid-template-columns:5fr 7fr;gap:48px;align-items:start}
+  .body-sec{padding-top:0}
+  .who{list-style:none;border-top:1px solid var(--line)}
+  .who li{font:400 clamp(20px,2vw,26px)/1.35 var(--display);padding:22px 0;border-bottom:1px solid var(--line)}
+  .styles{margin-top:20px}
+  .eq{margin-top:20px;font-size:14px}
+  .facts-sec{background:var(--paper)}
+  .facts{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+  .facts div{border-top:1px solid var(--cocoa);padding-top:18px}
+  .facts span{display:block;font-size:13px;color:var(--caramel);margin-bottom:8px}
+  .facts b{font:400 clamp(20px,2vw,26px)/1.25 var(--display);color:var(--wine)}
+  .facts em{display:block;font-style:normal;font-size:13px;color:var(--caramel);margin-top:4px}
+  .pol{margin-top:40px;font-size:14px;color:var(--caramel);max-width:70ch}
+  .acts{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+  .more-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:32px}
+  .more-pic{aspect-ratio:3/4;border-radius:var(--r);overflow:hidden;margin-bottom:12px}
+  .more-item :global(img){transition:transform 1.2s var(--ease)}
+  .more-item:hover :global(img){transform:scale(1.04)}
+  @media (max-width:899px){.two{grid-template-columns:1fr;gap:28px}.facts{grid-template-columns:1fr 1fr}.more-grid{grid-template-columns:1fr 1fr}}
+</style>

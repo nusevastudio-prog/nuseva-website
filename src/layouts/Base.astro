@@ -1,0 +1,82 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { site, studios } from '../data/site.js';
+import { u } from '../lib/url.js';
+import ogImg from '../assets/img/hang-reformer.jpg';
+import { getImage } from 'astro:assets';
+
+const { title, description = 'Nuseva Studio: Pilates kèm riêng 1:1 và 1:2 trên máy Reformer, Cadillac, Chair ở Quận 1 và Phú Nhuận. Có thêm Barre, Yoga, Dance và lớp nhóm. Buổi đầu giảm 50%.', image } = Astro.props;
+const fullTitle = title ? `${title} | Nuseva Studio` : 'Nuseva Studio | Pilates kèm riêng ở Quận 1 và Phú Nhuận';
+const og = await getImage({ src: image || ogImg, width: 1200, height: 630, format: 'jpg', fit: 'cover' });
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const ld = {
+  '@context': 'https://schema.org',
+  '@graph': studios.map((s) => ({
+    '@type': 'HealthClub',
+    name: s.name,
+    brand: 'Nuseva Studio',
+    telephone: site.hotline,
+    email: site.email,
+    url: Astro.site?.toString(),
+    address: { '@type': 'PostalAddress', streetAddress: s.address, addressLocality: s.district, addressRegion: 'TP. Hồ Chí Minh', addressCountry: 'VN' },
+    openingHours: 'Mo-Su 08:00-21:00',
+    hasMap: s.map,
+  })),
+};
+---
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{fullTitle}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonical} />
+  <meta name="theme-color" content="#743014" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="vi_VN" />
+  <meta property="og:title" content={fullTitle} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={new URL(og.src, Astro.site)} />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href={u('favicon.svg')} type="image/svg+xml" />
+  <link rel="preload" href={u('fonts/TenorSansVN.woff2')} as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href={u('fonts/Montserrat.woff2')} as="font" type="font/woff2" crossorigin />
+  <script is:inline>if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('js')</script>
+  <script type="application/ld+json" set:html={JSON.stringify(ld)} />
+  {site.ga4 && (
+    <Fragment>
+      <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${site.ga4}`}></script>
+      <script is:inline define:vars={{ id: site.ga4 }}>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config',id);</script>
+    </Fragment>
+  )}
+  {site.metaPixel && (
+    <script is:inline define:vars={{ id: site.metaPixel }}>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init',id);fbq('track','PageView');</script>
+  )}
+</head>
+<body>
+  <a class="sr skip" href="#main">Bỏ qua menu</a>
+  <Header />
+  <main id="main"><slot /></main>
+  <Footer />
+  <nav class="mbar" aria-label="Liên hệ nhanh">
+    <a href={site.zalo} target="_blank" rel="noopener">Nhắn Zalo</a>
+    <a href={`tel:${site.phoneRaw}`}>Gọi ngay</a>
+    <a class="mbar-main" href={u('lien-he')}>Đặt buổi thử</a>
+  </nav>
+  <script>import '../scripts/motion.js';</script>
+  <style>
+    main{padding-top:72px}
+    .skip:focus{position:fixed;top:8px;left:8px;width:auto;height:auto;clip:auto;z-index:100;background:var(--paper);padding:10px 14px;border-radius:8px}
+    .mbar{display:none}
+    @media (max-width:520px){
+      main{padding-top:64px}
+      .mbar{display:grid;grid-template-columns:1fr 1fr 1.3fr;gap:6px;position:fixed;left:10px;right:10px;bottom:calc(10px + env(safe-area-inset-bottom));z-index:40;padding:6px;border-radius:999px;background:rgba(68,45,28,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+      .mbar a{display:flex;align-items:center;justify-content:center;height:44px;border-radius:999px;color:var(--paper);font:600 13px/1 var(--body)}
+      .mbar .mbar-main{background:var(--paper);color:var(--wine)}
+    }
+  </style>
+</body>
+</html>

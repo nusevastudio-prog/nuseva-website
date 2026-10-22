@@ -1,0 +1,55 @@
+---
+import Base from '../layouts/Base.astro';
+import Pic from '../components/Pic.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { getCollection, render } from 'astro:content';
+import { u } from '../lib/url.js';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((p) => ({ params: { slug: p.id }, props: { p, all: posts } }));
+}
+const { p, all } = Astro.props;
+const { Content } = await render(p);
+const more = all.filter((x) => x.id !== p.id).slice(0, 3);
+const imgs = import.meta.glob('../assets/img/*.jpg', { eager: true });
+const fmt = (d) => d.toLocaleDateString('vi-VN', { day: '2-digit', month: '2-digit', year: 'numeric' });
+---
+<Base title={p.data.title} description={p.data.description} image={imgs[`../assets/img/${p.data.image}.jpg`].default}>
+  <article>
+    <header class="wrap ah">
+      <a class="link" href={u('tin-tuc')}>Blog</a>
+      <h1 class="d2" data-split>{p.data.title}</h1>
+      <p class="muted" data-reveal>{fmt(p.data.date)} · Nuseva Studio</p>
+    </header>
+    <div class="ap" data-expand><Pic name={p.data.image} alt="" loading="eager" /></div>
+    <div class="wrap"><div class="body"><Content /></div></div>
+  </article>
+  <section class="sec">
+    <div class="wrap">
+      <h2 class="d3">Đọc tiếp</h2>
+      <div class="more">
+        {more.map((m) => (
+          <a href={u(m.id)}><div class="mp"><Pic name={m.data.image} alt="" sizes="(min-width: 900px) 30vw, 100vw" /></div><h3 class="d4">{m.data.title}</h3></a>
+        ))}
+      </div>
+    </div>
+  </section>
+  <CtaBand />
+</Base>
+<style>
+  .ah{padding-top:clamp(56px,8vw,110px);max-width:calc(900px + var(--gut)*2)}
+  .ah h1{margin:20px 0 16px}
+  .ap{height:clamp(320px,60vh,640px);margin:clamp(40px,5vw,64px) auto;overflow:hidden;clip-path:inset(0 var(--gut) round 22px)}
+  :global(.js) .ap{clip-path:inset(0% 7% 0% 7% round 22px)}
+  .ap :global(img){width:100%;height:100%;object-fit:cover}
+  .body{max-width:680px;margin:0 auto;font-size:17px;line-height:1.75}
+  .body :global(h2){font:400 clamp(26px,2.6vw,34px)/1.2 var(--display);margin:2em 0 .6em}
+  .body :global(p),.body :global(ul),.body :global(ol){margin-bottom:1.1em}
+  .body :global(ul),.body :global(ol){padding-left:1.3em}
+  .body :global(li){margin-bottom:.4em}
+  .body :global(strong){color:var(--wine);font-weight:600}
+  .more{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:32px}
+  .mp{aspect-ratio:4/3;border-radius:var(--r);overflow:hidden;margin-bottom:14px}
+  @media (max-width:760px){:global(.js) .ap{clip-path:inset(0 var(--gut) round 16px)}.more{grid-template-columns:1fr}}
+</style>

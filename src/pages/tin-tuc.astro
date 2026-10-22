@@ -1,0 +1,48 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Pic from '../components/Pic.astro';
+import { getCollection } from 'astro:content';
+import { u } from '../lib/url.js';
+const posts = (await getCollection('blog')).sort((a, b) => b.data.date - a.data.date);
+const [first, ...rest] = posts;
+const fmt = (d) => d.toLocaleDateString('vi-VN', { day: '2-digit', month: '2-digit', year: 'numeric' });
+---
+<Base title="Blog" description="Bài viết về Pilates từ Nuseva Studio: Pilates là gì, chọn hình thức tập, ăn uống khi tập, chọn phòng tập ở Quận 1.">
+  <PageHero title="Blog" intro="Những điều người mới hay hỏi về Pilates, tụi mình viết lại cho rõ." />
+  <section class="wrap">
+    <a class="feat" href={u(first.id)} data-reveal>
+      <div class="feat-pic" data-parallax><Pic name={first.data.image} alt="" sizes="(min-width: 900px) 58vw, 100vw" /></div>
+      <div>
+        <p class="muted">{fmt(first.data.date)}</p>
+        <h2 class="d2">{first.data.title}</h2>
+        <p class="desc">{first.data.description}</p>
+        <span class="link">Đọc bài</span>
+      </div>
+    </a>
+    <div class="list" data-stagger>
+      {rest.map((p) => (
+        <a class="card" href={u(p.id)}>
+          <div class="card-pic"><Pic name={p.data.image} alt="" sizes="(min-width: 900px) 25vw, 100vw" /></div>
+          <p class="muted">{fmt(p.data.date)}</p>
+          <h3 class="d4">{p.data.title}</h3>
+        </a>
+      ))}
+    </div>
+  </section>
+  <div style="height:clamp(80px,10vw,140px)"></div>
+</Base>
+<style>
+  .feat{display:grid;grid-template-columns:1.4fr 1fr;gap:clamp(28px,4vw,64px);align-items:center;padding-bottom:clamp(56px,7vw,96px);border-bottom:1px solid var(--line)}
+  .feat-pic{aspect-ratio:4/3;border-radius:var(--r);overflow:hidden}
+  .feat h2{margin:10px 0 16px}
+  .desc{margin-bottom:24px;max-width:46ch}
+  .list{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:clamp(48px,6vw,80px)}
+  .card-pic{aspect-ratio:4/5;border-radius:var(--r);overflow:hidden;margin-bottom:16px}
+  .card :global(img),.feat :global(img){transition:transform 1.2s var(--ease)}
+  .card:hover :global(img){transform:scale(1.04)}
+  .card h3{margin-top:6px}
+  .muted{font-size:13px}
+  @media (max-width:899px){.feat{grid-template-columns:1fr}.list{grid-template-columns:1fr 1fr}}
+  @media (max-width:520px){.list{grid-template-columns:1fr}}
+</style>

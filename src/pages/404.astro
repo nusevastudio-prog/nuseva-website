@@ -1,0 +1,18 @@
+---
+import Base from '../layouts/Base.astro';
+import Logo from '../components/Logo.astro';
+import { u } from '../lib/url.js';
+---
+<Base title="Không tìm thấy trang">
+  <section class="wrap nf">
+    <Logo kind="cat" class="nf-cat" />
+    <h1 class="d2">Trang này không có ở đây</h1>
+    <p>Có thể đường dẫn đã đổi khi Nuseva làm lại web. Quay về trang chủ hoặc xem lớp học nhé.</p>
+    <div><a class="btn btn-wine" href={u()}>Về trang chủ</a> <a class="btn btn-ghost" href={u('lop-hoc')}>Xem lớp học</a></div>
+  </section>
+</Base>
+<style>
+  .nf{min-height:70vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:20px;padding-block:80px}
+  :global(.nf-cat){width:200px;height:auto;color:var(--caramel)}
+  .nf p{max-width:44ch}
+</style>

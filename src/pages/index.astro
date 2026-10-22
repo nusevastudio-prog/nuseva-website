@@ -1,0 +1,304 @@
+---
+import Base from '../layouts/Base.astro';
+import Pic from '../components/Pic.astro';
+import Logo from '../components/Logo.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { site, studios, classes, prices, faqs } from '../data/site.js';
+import { u } from '../lib/url.js';
+
+const [main, ...rest] = classes;
+const gallery = [
+  { n: 'lo-xo-mau', a: 'Lò xo màu dưới máy Reformer', c: 'Lò xo của máy Reformer. Mỗi màu một mức nặng.' },
+  { n: 'hlv-chinh-form', a: 'Huấn luyện viên chỉnh tư thế cho học viên', c: 'Huấn luyện viên chỉnh từng tư thế.' },
+  { n: 'tham-cuon', a: 'Thảm tập xếp trên giá gỗ', c: 'Thảm, bóng, gạch tập có sẵn. Bạn chỉ cần mang vớ.' },
+  { n: 'phong-tham-barre', a: 'Phòng thảm có gióng barre', c: 'Phòng thảm và gióng barre ở Phan Đăng Lưu.' },
+  { n: 'tay-bong-tham', a: 'Tay học viên trên bóng tập', c: 'Lớp nhóm tối đa 6 người.' },
+  { n: 'reformer-chot-lo-xo', a: 'Chốt lò xo trên máy Reformer', c: 'Đổi lò xo để tập nhẹ hơn hoặc nặng hơn.' },
+  { n: 'bang-hieu-go', a: 'Biển hiệu Nuseva Studio', c: 'Pilates, Movement, Wellness.' },
+];
+---
+<Base>
+  <!-- Mở trang -->
+  <section class="mast" data-mast>
+    <div class="wrap mast-in">
+      <h1 class="sr">Nuseva Studio, Pilates kèm riêng ở Quận 1 và Phú Nhuận</h1>
+      <div class="mast-logo" data-mast-logo><Logo class="mast-svg" /></div>
+      <div class="mast-cat" data-mast-cat><Logo kind="cat" class="mast-cat-svg" /></div>
+      <div class="mast-sub" data-mast-sub>
+        <p class="d4">Pilates kèm riêng ở Quận 1 và Phú Nhuận</p>
+        <div class="mast-btns">
+          <a class="btn btn-wine" href={u('lien-he')}>Đặt buổi tập thử</a>
+          <a class="btn btn-ghost" href={u('lop-hoc')}>Xem lớp học</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="hero-pic" data-expand>
+    <Pic name="hang-reformer" alt="Hàng máy Reformer ở Nuseva Phan Đăng Lưu" loading="eager" fetchpriority="high" />
+  </div>
+
+  <!-- Về Nuseva -->
+  <section class="sec about">
+    <div class="wrap about-in">
+      <h2 class="about-k">Về Nuseva</h2>
+      <div>
+        <p class="lead" data-fill>Nuseva là studio Pilates kèm riêng. Mỗi buổi 60 phút, một huấn luyện viên theo sát bạn trên máy Reformer, Cadillac, Chair, với giáo án viết cho đúng cơ thể bạn, kể cả khi bạn chưa từng tập.</p>
+        <div class="about-links" data-reveal>
+          <a class="link" href={u('lien-he')}>Đặt buổi tập thử</a>
+          <a class="link" href={u('gioi-thieu')}>Câu chuyện Nuseva</a>
+        </div>
+      </div>
+    </div>
+    <div class="wrap">
+      <dl class="facts" data-stagger>
+        <div><dt>60 phút</dt><dd>mỗi buổi, giáo án riêng</dd></div>
+        <div><dt>1:1 và 1:2</dt><dd>kèm riêng là chính</dd></div>
+        <div><dt>2 studio</dt><dd>Quận 1 và Phú Nhuận</dd></div>
+        <div><dt>{site.hours}</dt><dd>{site.hoursNote.toLowerCase()}</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <div class="marquee" data-marquee aria-hidden="true">
+    <div class="marquee-track">
+      {[...classes, ...classes].map((c) => (<span><a href={u('lop-hoc/' + c.slug)} tabindex="-1">{c.name}</a><svg viewBox="0 0 24 24"><path d="M12 0l2.4 9.6L24 12l-9.6 2.4L12 24l-2.4-9.6L0 12l9.6-2.4z"/></svg></span>))}
+    </div>
+  </div>
+
+  <!-- Lớp học -->
+  <section class="sec">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 class="d1" data-split>Lớp học</h2>
+        <p data-reveal>Chưa biết chọn lớp nào thì bắt đầu với Pilates máy. Huấn luyện viên xem thể trạng rồi gợi ý tiếp.</p>
+      </div>
+      <div class="cls">
+        <a class="tile tile-main" href={u('lop-hoc/' + main.slug)} data-parallax>
+          <Pic name={main.image} alt={main.alt} sizes="(min-width: 900px) 56vw, 100vw" />
+          <div class="tile-cap">
+            <h3 class="d3">{main.name}</h3>
+            <p>{main.short}</p>
+            <div class="chips">{main.formats.map((f) => <span class="chip">{f}</span>)}<span class="chip">Cả 2 studio</span></div>
+          </div>
+        </a>
+        {rest.map((c) => (
+          <a class="tile" href={u('lop-hoc/' + c.slug)} data-parallax>
+            <Pic name={c.image} alt={c.alt} sizes="(min-width: 900px) 22vw, 100vw" />
+            <div class="tile-cap">
+              <h3 class="d4">{c.name}</h3>
+              <p>{c.short}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Buổi đầu -->
+  <section class="steps" data-steps>
+    <div class="wrap steps-in">
+      <div class="steps-txt">
+        <h2 class="d2">Buổi đầu ở Nuseva diễn ra thế này</h2>
+        <ol>
+          <li data-step><b>1</b><div><h3 class="d4">Kiểm tra thể trạng</h3><p>Huấn luyện viên hỏi về cơ thể, thói quen, chỗ hay đau mỏi và mục tiêu của bạn.</p></div></li>
+          <li data-step><b>2</b><div><h3 class="d4">Tư vấn lộ trình</h3><p>Gợi ý lớp và số buổi mỗi tuần hợp với thể trạng và mục tiêu của bạn.</p></div></li>
+          <li data-step><b>3</b><div><h3 class="d4">Tập thử toàn thân</h3><p>Một bài full body để xem cơ thể bạn vận động thế nào. Buổi này giảm 50%.</p></div></li>
+        </ol>
+        <div class="steps-bar"><i data-step-bar></i></div>
+      </div>
+      <div class="steps-pics">
+        <div data-step-pic><Pic name="hlv-chinh-form" alt="Huấn luyện viên chỉnh tư thế" sizes="(min-width: 900px) 40vw, 100vw" /></div>
+        <div data-step-pic><Pic name="phong-may-cadillac" alt="Phòng máy Pilates" sizes="(min-width: 900px) 40vw, 100vw" /></div>
+        <div data-step-pic><Pic name="plank-tham" alt="Học viên tập plank trên thảm" sizes="(min-width: 900px) 40vw, 100vw" /></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Hai studio -->
+  <section class="sec">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 class="d1" data-split>Hai studio</h2>
+        <p data-reveal>Pilates máy và thảm có ở cả hai nơi. Barre, Yoga, Dance và lớp nhóm chỉ có ở Phan Đăng Lưu.</p>
+      </div>
+      <div class="std">
+        {studios.map((s) => (
+          <article class="std-card" data-reveal>
+            {s.image ? (
+              <div class="std-pic" data-parallax><Pic name={s.image} alt={`Mặt tiền ${s.name}`} sizes="(min-width: 900px) 46vw, 100vw" /></div>
+            ) : (
+              <div class="std-pic std-type"><span class="d2">{s.district}</span><Logo kind="cat" class="std-cat" /></div>
+            )}
+            <div class="std-meta">
+              <p class="muted">{s.short}</p>
+              <h3 class="d3">{s.name}</h3>
+              <p>{s.address}, {s.district}</p>
+              <p class="std-note">{s.note}</p>
+              <a class="link" href={s.map} target="_blank" rel="noopener">Chỉ đường</a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Bên trong -->
+  <section class="inside" data-hscroll>
+    <div class="inside-head wrap">
+      <h2 class="d2">Bên trong Nuseva</h2>
+      <a class="link" href={u('album-anh')}>Xem album</a>
+    </div>
+    <div class="inside-track" data-hscroll-track>
+      {gallery.map((g, i) => (
+        <figure class={'ins ins-' + (i % 3)}>
+          <div class="ins-pic"><Pic name={g.n} alt={g.a} sizes="(min-width: 900px) 34vw, 80vw" /></div>
+          <figcaption>{g.c}</figcaption>
+        </figure>
+      ))}
+    </div>
+  </section>
+
+  <!-- Giá -->
+  <section class="sec price-sec">
+    <div class="wrap">
+      <div class="price">
+        <h2 class="d3">Giá mỗi buổi, tính từ</h2>
+        <div class="price-row">
+          {prices.map((p) => (
+            <div><b data-pop>{p.from}</b><span>{p.label}</span></div>
+          ))}
+        </div>
+        <div class="price-act">
+          <p>Buổi lẻ đầu tiên giảm 50%.</p>
+          <a class="btn btn-wine" href={u('bang-gia')}>Xem bảng giá</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="sec faq-sec">
+    <div class="wrap faq">
+      <h2 class="d2" data-split>Câu hỏi hay gặp</h2>
+      <div class="faq-list">
+        {faqs.map((f) => (
+          <details><summary>{f.q}<i></i></summary><p>{f.a}</p></details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CtaBand />
+</Base>
+
+<style>
+  .mast{padding:clamp(40px,6vw,72px) 0 clamp(36px,5vw,56px);overflow:hidden}
+  .mast-in{position:relative;text-align:center}
+  .mast-logo{color:var(--wine);width:min(1040px,94%);margin:0 auto}
+  :global(.mast-svg){width:100%;height:auto}
+  .mast-cat{position:absolute;right:7%;top:-6px;width:clamp(96px,15vw,210px);color:var(--caramel)}
+  .mast-cat :global(svg){width:100%;height:auto;transform:scaleX(-1)}
+  .mast-sub{display:flex;flex-direction:column;align-items:center;gap:24px;margin-top:clamp(20px,3vw,36px)}
+  .mast-sub .d4{color:var(--caramel)}
+  .mast-btns{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+
+  .hero-pic{height:clamp(420px,72vh,820px);overflow:hidden;margin:0 auto;clip-path:inset(0 var(--gut) 0 var(--gut) round 22px)}
+  :global(.js) .hero-pic{clip-path:inset(0% 7% 0% 7% round 22px)}
+  .hero-pic :global(img){width:100%;height:100%;object-fit:cover}
+
+  .about-in{display:grid;grid-template-columns:4fr 7fr;gap:48px}
+  .about-k{font:400 22px/1.3 var(--display)}
+  .about-in .lead{max-width:30ch}
+  .about-links{display:flex;gap:28px;margin-top:36px}
+  .facts{display:grid;grid-template-columns:repeat(4,1fr);margin-top:clamp(64px,8vw,110px);border-top:1px solid var(--line)}
+  .facts div{padding:28px 24px 0 0}
+  .facts div+div{padding-left:24px;border-left:1px solid var(--line)}
+  .facts dt{font:400 clamp(24px,2.4vw,32px)/1.15 var(--display);color:var(--wine)}
+  .facts dd{font-size:14px;color:var(--caramel);margin-top:6px}
+
+  .marquee{overflow:hidden;border-block:1px solid var(--line);padding:clamp(24px,3vw,40px) 0;white-space:nowrap}
+  .marquee-track{display:inline-flex;will-change:transform}
+  .marquee span{display:inline-flex;align-items:center;gap:clamp(28px,4vw,56px);padding-right:clamp(28px,4vw,56px);font:400 clamp(30px,4vw,56px)/1 var(--display);color:var(--wine)}
+  .marquee svg{width:20px;height:20px;fill:var(--olive);flex:none}
+
+  .cls{display:grid;grid-template-columns:1.3fr 1fr 1fr;grid-template-rows:auto auto;gap:20px}
+  .tile{position:relative;display:block;border-radius:var(--r);overflow:hidden;color:var(--paper);min-height:330px;isolation:isolate}
+  .tile-main{grid-row:span 2;min-height:720px}
+  .tile :global(picture),.tile :global(img){position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;transition:transform 1.2s var(--ease)}
+  .tile::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(68,45,28,0) 35%,rgba(68,45,28,.85))}
+  .tile-cap{position:absolute;inset:auto 0 0;padding:clamp(20px,2.4vw,32px)}
+  .tile-cap p{font-size:14px;margin-top:6px;max-width:40ch;opacity:.92}
+  .tile-cap .chips{margin-top:14px}
+  .tile:hover :global(img){transform:scale(1.04)}
+
+  .steps{background:var(--olive);color:var(--paper);overflow:hidden}
+  .steps-in{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,96px);align-items:center;min-height:100vh;padding-block:clamp(80px,10vw,120px)}
+  .steps-txt h2{max-width:14ch;margin-bottom:48px}
+  .steps ol{list-style:none;border-top:1px solid rgba(246,235,214,.35)}
+  .steps li{display:grid;grid-template-columns:64px 1fr;gap:16px;padding:24px 0;border-bottom:1px solid rgba(246,235,214,.35);transition:opacity .6s var(--ease)}
+  :global(.js) .steps li{opacity:.4}
+  :global(.js) .steps li:global(.is-on){opacity:1}
+  .steps li b{font:400 44px/1 var(--display)}
+  .steps li p{font-size:15px;margin-top:6px;max-width:38ch}
+  .steps-bar{height:2px;background:rgba(246,235,214,.25);margin-top:32px}
+  .steps-bar i{display:block;height:100%;background:var(--paper);transform:scaleX(0);transform-origin:left}
+  .steps-pics{position:relative;aspect-ratio:4/5;border-radius:var(--r);overflow:hidden}
+  .steps-pics>div{position:absolute;inset:0;opacity:0}
+  .steps-pics>div:first-child{opacity:1}
+
+  .std{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  .std-pic{aspect-ratio:4/5;border-radius:var(--r);overflow:hidden;position:relative}
+  .std-type{background:var(--wine);color:var(--paper);display:flex;flex-direction:column;justify-content:space-between;padding:clamp(24px,3vw,40px)}
+  :global(.std-cat){width:60%;height:auto;color:var(--batter);align-self:flex-end}
+  .std-meta{padding-top:24px}
+  .std-meta h3{margin:4px 0 8px}
+  .std-note{font-size:14px;color:var(--caramel);margin:6px 0 14px;max-width:46ch}
+
+  .inside{padding:clamp(80px,10vw,140px) 0;background:var(--paper);overflow:hidden}
+  .inside-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:48px}
+  .inside-track{display:flex;align-items:flex-start;gap:24px;padding-left:var(--gut);width:max-content}
+  .ins{width:clamp(260px,30vw,460px);flex:none}
+  .ins-pic{border-radius:var(--r);overflow:hidden;aspect-ratio:4/5}
+  .ins-1 .ins-pic{aspect-ratio:1/1;margin-top:80px}
+  .ins-2 .ins-pic{aspect-ratio:3/4;margin-top:30px}
+  .ins figcaption{font-size:14px;margin-top:14px;color:var(--caramel);max-width:34ch}
+
+  .price{background:var(--batter);border-radius:var(--r);padding:clamp(32px,5vw,64px)}
+  .price-row{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin:36px 0 40px}
+  .price-row b{display:block;font:400 clamp(48px,6vw,88px)/1 var(--display);color:var(--wine);overflow:hidden}
+  .price-row span{display:block;font-size:14px;margin-top:10px}
+  .price-act{display:flex;justify-content:space-between;align-items:center;gap:20px;border-top:1px solid rgba(68,45,28,.2);padding-top:28px}
+
+  .faq{display:grid;grid-template-columns:4fr 7fr;gap:48px}
+  .faq-sec{padding-top:0}
+  details{border-bottom:1px solid var(--line)}
+  details:first-child{border-top:1px solid var(--line)}
+  summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:24px;padding:24px 0;font:400 clamp(18px,1.6vw,22px)/1.35 var(--display)}
+  summary::-webkit-details-marker{display:none}
+  summary i{position:relative;width:14px;height:14px;flex:none;margin-top:6px}
+  summary i::before,summary i::after{content:"";position:absolute;left:0;right:0;top:6px;height:1.5px;background:currentColor;transition:transform .5s var(--ease)}
+  summary i::after{transform:rotate(90deg)}
+  details[open] summary i::after{transform:rotate(0)}
+  details p{padding:0 0 24px;max-width:60ch;color:var(--caramel)}
+
+  @media (max-width:899px){
+    .about-in,.faq{grid-template-columns:1fr;gap:16px}
+    .facts{grid-template-columns:1fr 1fr}.facts div{padding-bottom:20px}.facts div:nth-child(odd){border-left:0;padding-left:0}.facts div:nth-child(n+3){border-top:1px solid var(--line)}
+    .cls{grid-template-columns:1fr 1fr}.tile-main{grid-column:span 2;grid-row:auto;min-height:480px}
+    .steps-in{grid-template-columns:1fr;min-height:0}
+    .steps-pics{aspect-ratio:4/3}
+    .std{grid-template-columns:1fr;gap:56px}
+    .inside-track{overflow-x:auto;width:auto;padding-right:var(--gut);scroll-snap-type:x mandatory;scrollbar-width:none}
+    .ins{scroll-snap-align:start;width:76vw}
+    .ins-1 .ins-pic,.ins-2 .ins-pic{margin-top:0}
+    .price-row{grid-template-columns:1fr;gap:28px}
+    .price-act{flex-direction:column;align-items:flex-start}
+  }
+  @media (max-width:560px){
+    .cls{grid-template-columns:1fr}.tile-main{grid-column:auto}.tile{min-height:380px}
+    .mast-cat{top:-14px;right:2%}
+    .hero-pic{height:62vh}
+    :global(.js) .hero-pic{clip-path:inset(0 var(--gut) round 16px)}
+  }
+</style>

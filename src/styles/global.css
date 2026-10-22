@@ -1,0 +1,85 @@
+@font-face{font-family:"Tenor VN";src:url("/fonts/TenorSansVN.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"Montserrat";src:url("/fonts/Montserrat.woff2") format("woff2");font-weight:100 900;font-display:swap}
+
+:root{
+  --batter:#E8D1A7; --caramel:#84592B; --wine:#743014; --olive:#9D9167; --cocoa:#442D1C;
+  --bg:#FBF5EA; --paper:#F6EBD6; --line:rgba(68,45,28,.16);
+  --display:"Tenor VN","Tenor Sans",Georgia,serif;
+  --body:"Montserrat",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --gut:clamp(20px,4vw,56px);
+  --max:1320px;
+  --r:20px;
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+*,*::before,*::after{box-sizing:border-box}
+*{margin:0;padding:0}
+html{-webkit-text-size-adjust:100%;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased}
+body{background:var(--bg);color:var(--cocoa);font:400 16px/1.65 var(--body);overflow-x:hidden}
+img,picture,svg,video{display:block;max-width:100%}
+picture{width:100%;height:100%}
+picture img{width:100%;height:100%;object-fit:cover}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+:focus-visible{outline:2px solid var(--wine);outline-offset:3px;border-radius:4px}
+::selection{background:var(--batter);color:var(--cocoa)}
+
+@view-transition{navigation:auto}
+::view-transition-old(root){animation:vt-out .35s var(--ease) both}
+::view-transition-new(root){animation:vt-in .55s var(--ease) both}
+@keyframes vt-out{to{opacity:0}}
+@keyframes vt-in{from{opacity:0;transform:translateY(12px)}}
+
+.wrap{max-width:calc(var(--max) + var(--gut)*2);margin:0 auto;padding:0 var(--gut)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* type */
+.d1,.d2,.d3,.d4{font-family:var(--display);font-weight:400;letter-spacing:.005em}
+.d1{font-size:clamp(44px,7vw,104px);line-height:1.02}
+.d2{font-size:clamp(34px,4.6vw,64px);line-height:1.06}
+.d3{font-size:clamp(26px,2.6vw,36px);line-height:1.2}
+.d4{font-size:clamp(20px,1.7vw,24px);line-height:1.3}
+.lead{font:400 clamp(22px,2.4vw,34px)/1.38 var(--display)}
+.muted{color:var(--caramel)}
+.prose p{max-width:62ch}
+.prose p+p{margin-top:1em}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:0 26px;border-radius:999px;font:600 14px/1 var(--body);letter-spacing:.01em;border:1px solid currentColor;transition:background-color .35s var(--ease),color .35s var(--ease),transform .35s var(--ease);white-space:nowrap}
+.btn:hover{transform:translateY(-1px)}
+.btn-wine{background:var(--wine);border-color:var(--wine);color:var(--paper)}
+.btn-wine:hover{background:var(--cocoa);border-color:var(--cocoa)}
+.btn-cream{background:var(--paper);border-color:var(--paper);color:var(--wine)}
+.btn-cream:hover{background:var(--batter);border-color:var(--batter)}
+.btn-ghost:hover{background:var(--cocoa);color:var(--paper);border-color:var(--cocoa)}
+.link{font-weight:600;font-size:14px;background:linear-gradient(currentColor,currentColor) 0 100%/100% 1px no-repeat;padding-bottom:3px;transition:background-size .45s var(--ease)}
+.link:hover{background-size:0 1px;background-position:100% 100%}
+
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font:600 12px/1 var(--body);padding:7px 11px;border-radius:999px;background:var(--paper);color:var(--cocoa)}
+
+/* section rhythm */
+.sec{padding:clamp(80px,11vw,160px) 0}
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:clamp(32px,4vw,56px)}
+.sec-head p{max-width:44ch}
+.rule{border:0;border-top:1px solid var(--line)}
+
+/* motion helpers (JS gắn class .js) */
+.js [data-reveal]{opacity:0;transform:translateY(28px)}
+.js .split-line{display:block;overflow:hidden;padding-bottom:.08em;margin-bottom:-.08em}
+.js .split-line>span{display:block;transform:translateY(105%)}
+@media (prefers-reduced-motion:reduce){
+  .js [data-reveal]{opacity:1;transform:none}
+  .js .split-line>span{transform:none}
+  ::view-transition-old(root),::view-transition-new(root){animation:none}
+}
+
+@media (max-width:760px){
+  .sec-head{display:block}.sec-head p{margin-top:14px}
+  body{font-size:15.5px}
+}
+
+/* trạng thái đầu của màn mở trang, tránh nháy trước khi JS chạy */
+.js [data-mast-logo]{clip-path:inset(0 100% 0 0)}
+.js [data-mast-cat]{opacity:0}
+.js [data-mast-sub]>*{opacity:0}
+@media (prefers-reduced-motion:reduce){.js [data-mast-logo]{clip-path:none}.js [data-mast-cat],.js [data-mast-sub]>*{opacity:1}}

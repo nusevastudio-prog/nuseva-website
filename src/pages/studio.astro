@@ -1,0 +1,75 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Pic from '../components/Pic.astro';
+import Logo from '../components/Logo.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { studios, classes, site } from '../data/site.js';
+import { u } from '../lib/url.js';
+const cname = (slug) => classes.find((c) => c.slug === slug).name;
+---
+<Base title="Studio" description="Hai studio Pilates của Nuseva: Cống Quỳnh (Quận 1) và Phan Đăng Lưu (Phú Nhuận). Địa chỉ, giờ mở cửa, lớp học và thiết bị ở từng nơi.">
+  <PageHero title="Hai studio" intro={`Một ở Quận 1, một ở Phú Nhuận. Mở cửa ${site.hours}, ${site.hoursNote.toLowerCase()}. Pilates máy và thảm kèm riêng có ở cả hai nơi.`} />
+
+  {studios.map((s, i) => (
+    <section class={'st' + (i % 2 ? ' st-alt' : '')} id={s.id}>
+      <div class="wrap st-in">
+        <div class="st-pic" data-reveal>
+          {s.image ? <div class="pic" data-parallax><Pic name={s.image} alt={`Mặt tiền ${s.name}`} sizes="(min-width: 900px) 45vw, 100vw" /></div>
+            : <div class="pic pic-type"><span class="d1">{s.district}</span><Logo kind="cat" class="st-cat" /></div>}
+        </div>
+        <div class="st-txt">
+          <p class="muted">{s.short}</p>
+          <h2 class="d2" data-split>{s.name}</h2>
+          <p class="st-note">{s.note}</p>
+          <dl>
+            <div><dt>Địa chỉ</dt><dd>{s.address}, {s.district}, {s.city}</dd></div>
+            <div><dt>Giờ mở cửa</dt><dd>{site.hours}, {site.hoursNote.toLowerCase()}</dd></div>
+            <div><dt>Lớp học</dt><dd>{s.classes.map(cname).join(', ')}</dd></div>
+            <div><dt>Hình thức</dt><dd>{s.formats}</dd></div>
+            {s.equipment && <div><dt>Thiết bị</dt><dd>{s.equipment.join(', ')}</dd></div>}
+          </dl>
+          <div class="acts">
+            <a class="btn btn-wine" href={s.map} target="_blank" rel="noopener">Chỉ đường trên Google Maps</a>
+            <a class="btn btn-ghost" href={u('lien-he')}>Đặt buổi thử ở đây</a>
+          </div>
+        </div>
+      </div>
+      <div class="wrap">
+        <iframe class="map" title={`Bản đồ ${s.name}`} loading="lazy" referrerpolicy="no-referrer-when-downgrade" src={`https://www.google.com/maps?q=${encodeURIComponent(s.embedQuery)}&output=embed`}></iframe>
+      </div>
+    </section>
+  ))}
+
+  <section class="sec">
+    <div class="wrap gal">
+      <div class="g g1" data-parallax><Pic name="phong-may-guong" alt="Phòng máy có gương ở Phan Đăng Lưu" sizes="60vw" /></div>
+      <div class="g g2" data-parallax><Pic name="phong-tham-barre" alt="Phòng thảm có gióng barre" sizes="40vw" /></div>
+      <div class="g g3" data-parallax><Pic name="bang-hieu-go" alt="Biển hiệu Nuseva Studio" sizes="30vw" /></div>
+      <div class="g g4" data-parallax><Pic name="cadillac-reformer" alt="Cadillac và Reformer" sizes="60vw" /></div>
+    </div>
+  </section>
+  <CtaBand />
+</Base>
+<style>
+  .st{padding:clamp(56px,8vw,110px) 0}
+  .st-alt{background:var(--paper)}
+  .st-in{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,5vw,80px);align-items:center}
+  .st-alt .st-pic{order:2}
+  .pic{aspect-ratio:4/5;border-radius:var(--r);overflow:hidden}
+  .pic-type{background:var(--wine);color:var(--paper);display:flex;flex-direction:column;justify-content:space-between;padding:clamp(28px,4vw,48px)}
+  :global(.st-cat){width:62%;height:auto;color:var(--batter);align-self:flex-end}
+  .st-note{margin:16px 0 28px;max-width:46ch}
+  dl{border-top:1px solid var(--line)}
+  dl div{display:grid;grid-template-columns:130px 1fr;gap:16px;padding:14px 0;border-bottom:1px solid var(--line);font-size:15px}
+  dt{color:var(--caramel)}
+  .acts{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+  .map{width:100%;height:360px;border:0;border-radius:var(--r);margin-top:clamp(40px,5vw,64px);filter:sepia(.25) saturate(.8)}
+  .gal{display:grid;grid-template-columns:repeat(12,1fr);gap:20px}
+  .g{border-radius:var(--r);overflow:hidden}
+  .g1{grid-column:1/8;aspect-ratio:16/10}
+  .g2{grid-column:8/13;aspect-ratio:1/1;margin-top:80px}
+  .g3{grid-column:2/6;aspect-ratio:9/14}
+  .g4{grid-column:6/13;aspect-ratio:16/10;align-self:end}
+  @media (max-width:899px){.st-in{grid-template-columns:1fr}.st-alt .st-pic{order:0}.gal{grid-template-columns:1fr}.g1,.g2,.g3,.g4{grid-column:auto;margin:0}dl div{grid-template-columns:110px 1fr}}
+</style>

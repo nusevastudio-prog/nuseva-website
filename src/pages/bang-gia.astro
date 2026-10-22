@@ -1,0 +1,60 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Pic from '../components/Pic.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { prices, policies, site } from '../data/site.js';
+---
+<Base title="Bảng giá" description="Giá tập Pilates ở Nuseva: kèm riêng 1:1 từ 420k/buổi, kèm đôi 1:2 từ 220k/buổi, lớp nhóm từ 130k/buổi. Buổi lẻ đầu tiên giảm 50%.">
+  <PageHero title="Bảng giá" intro="Giá tính theo buổi 60 phút, đây là mức thấp nhất của từng hình thức. Buổi lẻ đầu tiên giảm 50%." />
+
+  <section class="wrap">
+    <div class="cards" data-stagger>
+      {prices.map((p, i) => (
+        <article class={'card' + (i === 0 ? ' card-main' : '')}>
+          <h2 class="d3">{p.label}</h2>
+          <p class="from">từ</p>
+          <b>{p.from}</b>
+          <p class="unit">{p.unit}</p>
+          <p class="note">{p.note}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap two">
+      <div>
+        <h2 class="d2" data-split>Gói tập và chính sách</h2>
+        <p class="sub" data-reveal>Bảng giá chi tiết theo gói (số buổi, hạn dùng) Nuseva gửi qua Zalo, kèm tư vấn gói hợp với lịch của bạn.</p>
+        <a class="btn btn-wine" href={site.zalo} target="_blank" rel="noopener" data-reveal>Nhận bảng giá qua Zalo</a>
+      </div>
+      <dl class="pol">
+        {policies.map((p) => <div data-reveal><dt class="d4">{p.q}</dt><dd>{p.a}</dd></div>)}
+        <div data-reveal><dt class="d4">Thanh toán</dt><dd>Nhắn Nuseva để biết các hình thức thanh toán hiện có.</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <div class="wrap"><div class="band" data-parallax><Pic name="lo-xo-mau" alt="Lò xo màu của máy Reformer" sizes="100vw" /></div></div>
+  <div class="sp"></div>
+  <CtaBand />
+</Base>
+<style>
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .card{background:var(--paper);border-radius:var(--r);padding:clamp(28px,3.5vw,44px);display:flex;flex-direction:column;min-height:380px}
+  .card-main{background:var(--wine);color:var(--paper)}
+  .from{margin-top:auto;font-size:14px;opacity:.8}
+  .card b{font:400 clamp(64px,7vw,104px)/1 var(--display)}
+  .card:not(.card-main) b{color:var(--wine)}
+  .unit{font-size:14px;margin-top:6px}
+  .note{font-size:14px;margin-top:18px;padding-top:18px;border-top:1px solid currentColor;opacity:.85}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,96px)}
+  .sub{margin:24px 0 28px;max-width:44ch}
+  .pol{border-top:1px solid var(--line)}
+  .pol div{padding:24px 0;border-bottom:1px solid var(--line)}
+  .pol dd{margin-top:6px;color:var(--caramel)}
+  .band{height:clamp(280px,46vh,520px);border-radius:var(--r);overflow:hidden}
+  .sp{height:clamp(80px,10vw,140px)}
+  @media (max-width:899px){.cards,.two{grid-template-columns:1fr}.card{min-height:300px}}
+</style>

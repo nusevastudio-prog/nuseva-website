@@ -1,0 +1,60 @@
+---
+import Logo from './Logo.astro';
+import { nav, site } from '../data/site.js';
+import { u } from '../lib/url.js';
+const path = Astro.url.pathname;
+const isActive = (h) => path.replace(/\/$/, '').endsWith('/' + h);
+---
+<header class="hdr" data-header>
+  <div class="wrap hdr-in">
+    <a class="hdr-logo" href={u()} aria-label="Nuseva Studio, trang chủ"><Logo class="hdr-svg" /></a>
+    <nav class="hdr-nav" aria-label="Chính">
+      <ul>{nav.map((n) => <li><a href={u(n.href)} aria-current={isActive(n.href) ? 'page' : undefined}>{n.label}</a></li>)}</ul>
+    </nav>
+    <div class="hdr-act">
+      <a class="btn btn-cream hdr-cta" href={u('lien-he')}>Đặt buổi tập thử</a>
+      <button class="hdr-burger" data-menu-btn aria-expanded="false" aria-controls="menu"><span class="sr">Mở menu</span><i></i><i></i></button>
+    </div>
+  </div>
+</header>
+
+<div class="menu" id="menu" data-menu>
+  <ul>
+    {nav.map((n) => <li><a href={u(n.href)}>{n.label}</a></li>)}
+  </ul>
+  <div class="menu-foot">
+    <a class="btn btn-cream" href={site.zalo} target="_blank" rel="noopener">Nhắn Zalo</a>
+    <a class="btn" href={`tel:${site.phoneRaw}`}>Gọi {site.hotline}</a>
+  </div>
+</div>
+
+<style>
+  .hdr{position:fixed;inset:0 0 auto;z-index:50;background:var(--wine);color:var(--paper);transition:transform .6s var(--ease),box-shadow .4s}
+  .hdr.is-hidden{transform:translateY(-100%)}
+  .hdr-in{display:flex;align-items:center;justify-content:space-between;height:72px;gap:24px}
+  .hdr-logo{display:block;width:104px;flex:none}
+  :global(.hdr-svg){width:100%;height:auto}
+  .hdr-nav ul{display:flex;gap:30px;list-style:none;font:500 13.5px/1 var(--body)}
+  .hdr-nav a{position:relative;padding:6px 0;opacity:.88;transition:opacity .3s}
+  .hdr-nav a:hover,.hdr-nav a[aria-current]{opacity:1}
+  .hdr-nav a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:currentColor;transform:scaleX(0);transform-origin:right;transition:transform .5s var(--ease)}
+  .hdr-nav a:hover::after,.hdr-nav a[aria-current]::after{transform:scaleX(1);transform-origin:left}
+  .hdr-act{display:flex;align-items:center;gap:12px}
+  .hdr-cta{min-height:42px;padding:0 20px;font-size:13px}
+  .hdr-burger{display:none;width:44px;height:44px;position:relative}
+  .hdr-burger i{position:absolute;left:11px;right:11px;height:1.5px;background:currentColor;transition:transform .5s var(--ease)}
+  .hdr-burger i:first-of-type{top:18px}.hdr-burger i:last-of-type{top:25px}
+  :global(.menu-open) .hdr-burger i:first-of-type{transform:translateY(3.5px) rotate(45deg)}
+  :global(.menu-open) .hdr-burger i:last-of-type{transform:translateY(-3.5px) rotate(-45deg)}
+
+  .menu{position:fixed;inset:0;z-index:49;background:var(--wine);color:var(--paper);padding:110px var(--gut) 40px;display:flex;flex-direction:column;justify-content:space-between;clip-path:inset(0 0 100% 0);transition:clip-path .8s var(--ease);visibility:hidden}
+  :global(.menu-open) .menu{clip-path:inset(0 0 0 0);visibility:visible}
+  :global(.menu-open){overflow:hidden}
+  .menu ul{list-style:none}
+  .menu li{overflow:hidden;border-bottom:1px solid rgba(246,235,214,.18)}
+  .menu a{display:block;font:400 clamp(30px,8vw,44px)/1.5 var(--display)}
+  .menu-foot{display:flex;flex-wrap:wrap;gap:10px}
+
+  @media (max-width:1080px){.hdr-nav{display:none}.hdr-burger{display:block}}
+  @media (max-width:520px){.hdr-cta{display:none}.hdr-in{height:64px}.hdr-logo{width:92px}}
+</style>
