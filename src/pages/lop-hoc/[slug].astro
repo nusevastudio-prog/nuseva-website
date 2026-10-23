@@ -15,7 +15,7 @@ const where = studios.filter((s) => c.studios.includes(s.id));
 const others = classes.filter((x) => x.slug !== c.slug);
 ---
 <Base title={c.name} description={`${c.name} ở Nuseva Studio: ${c.short} ${c.duration} phút mỗi buổi, ${c.formats.join(', ')}. Giá từ ${c.priceFrom}/buổi.`}>
-  <PageHero kicker="Lớp học" title={c.name} intro={c.short} image={c.image} alt={c.alt}>
+  <PageHero kicker="Lớp học" title={c.name} intro={c.short} image={c.image} alt={c.alt} pos={c.pos} fit={c.heroFit}>
     <div class="chips hero-chips" data-reveal data-delay=".25">{c.formats.map((f) => <span class="chip">{f}</span>)}<span class="chip">{c.duration} phút</span><span class="chip">{c.level}</span></div>
   </PageHero>
 
