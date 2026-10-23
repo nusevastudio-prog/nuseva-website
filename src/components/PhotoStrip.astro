@@ -1,0 +1,26 @@
+---
+import Pic from './Pic.astro';
+const { items = [], title } = Astro.props;
+---
+{items.length > 0 && (
+  <div class="ps">
+    {title && <h3 class="d4 ps-t">{title}</h3>}
+    <div class="ps-track" data-stagger>
+      {items.map(([n, a]) => (
+        <figure class="ps-it">
+          <div class="ps-pic"><Pic name={n} alt={a} sizes="(min-width: 900px) 26vw, 72vw" /></div>
+          <figcaption>{a}</figcaption>
+        </figure>
+      ))}
+    </div>
+  </div>
+)}
+<style>
+  .ps{margin-top:clamp(40px,5vw,64px)}
+  .ps-t{margin-bottom:20px}
+  .ps-track{display:grid;grid-auto-flow:column;grid-auto-columns:clamp(220px,24vw,340px);gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:12px;scrollbar-width:thin}
+  .ps-it{scroll-snap-align:start}
+  .ps-pic{aspect-ratio:4/5;border-radius:var(--r);overflow:hidden}
+  .ps-it figcaption{font-size:13px;color:var(--caramel);margin-top:10px}
+  @media (max-width:760px){.ps-track{grid-auto-columns:72vw}}
+</style>

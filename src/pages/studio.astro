@@ -4,6 +4,7 @@ import PageHero from '../components/PageHero.astro';
 import Pic from '../components/Pic.astro';
 import Logo from '../components/Logo.astro';
 import CtaBand from '../components/CtaBand.astro';
+import PhotoStrip from '../components/PhotoStrip.astro';
 import { studios, classes, site } from '../data/site.js';
 import { u } from '../lib/url.js';
 const cname = (slug) => classes.find((c) => c.slug === slug).name;
@@ -36,19 +37,12 @@ const cname = (slug) => classes.find((c) => c.slug === slug).name;
         </div>
       </div>
       <div class="wrap">
+        <PhotoStrip items={s.gallery} title={`Bên trong ${s.name}`} />
         <iframe class="map" title={`Bản đồ ${s.name}`} loading="lazy" referrerpolicy="no-referrer-when-downgrade" src={`https://www.google.com/maps?q=${encodeURIComponent(s.embedQuery)}&output=embed`}></iframe>
       </div>
     </section>
   ))}
 
-  <section class="sec">
-    <div class="wrap gal">
-      <div class="g g1" data-parallax><Pic name="phong-may-guong" alt="Phòng máy có gương ở Phan Đăng Lưu" sizes="60vw" /></div>
-      <div class="g g2" data-parallax><Pic name="phong-tham-barre" alt="Phòng tập thảm có thanh vịn ballet" sizes="40vw" /></div>
-      <div class="g g3" data-parallax><Pic name="bang-hieu-go" alt="Biển hiệu Nuseva Studio" sizes="30vw" /></div>
-      <div class="g g4" data-parallax><Pic name="cadillac-reformer" alt="Cadillac và Reformer" sizes="60vw" /></div>
-    </div>
-  </section>
   <CtaBand />
 </Base>
 <style>

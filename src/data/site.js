@@ -33,8 +33,16 @@ export const studios = [
     classes: ['pilates-may', 'pilates-tham'],
     formats: '1:1 và 1:2',
     note: 'Studio nhỏ, chỉ dạy kèm riêng: 1 hoặc 2 người với một huấn luyện viên.',
-    image: 'studio-cong-quynh',
-    imageAlt: 'Phòng máy Cadillac và Reformer ở Nuseva Cống Quỳnh',
+    image: 'cs1-hai-hoc-vien-barrel',
+    imageAlt: 'Hai học viên tập trên máy Ladder Barrel ở Nuseva Cống Quỳnh',
+    equipment: ['Reformer', 'Cadillac', 'Ladder Barrel'],
+    gallery: [
+      ['cs1-ladder-barrel-bong', 'Học viên tập trên Ladder Barrel với bóng'],
+      ['cs1-hlv-chinh-barrel', 'Huấn luyện viên chỉnh tư thế trên Ladder Barrel'],
+      ['studio-cong-quynh', 'Phòng máy Cadillac và Reformer'],
+      ['cs1-phong-barrel', 'Góc phòng tập với hai máy Ladder Barrel'],
+      ['cs1-bang-hieu', 'Biển treo Nuseva ở Cống Quỳnh'],
+    ],
   },
   {
     id: 'phan-dang-luu',
@@ -50,6 +58,13 @@ export const studios = [
     note: 'Studio rộng hơn, có hai phòng: một phòng đặt máy Pilates, một phòng tập thảm có thanh vịn ballet. Ngoài lớp kèm riêng còn có lớp nhóm 4–6 người.',
     image: 'mat-tien-cs2',
     imageAlt: 'Mặt tiền Nuseva Phan Đăng Lưu',
+    gallery: [
+      ['phong-may-guong', 'Phòng máy có gương'],
+      ['phong-tham-barre', 'Phòng tập thảm có thanh vịn ballet'],
+      ['dance-ballet-nhom', 'Lớp ballet nhóm'],
+      ['bang-hieu-go', 'Biển hiệu Nuseva Studio'],
+      ['cadillac-reformer', 'Cadillac và Reformer'],
+    ],
     equipment: ['Reformer', 'Cadillac', 'Wunda Chair', 'Ladder Barrel', 'Spine Corrector'],
   },
 ];
@@ -77,6 +92,12 @@ export const classes = [
       'Mỗi buổi 60 phút, huấn luyện viên soạn bài riêng cho bạn và tập hoàn toàn trên máy: Reformer, Wunda Chair, Ladder Barrel, Spine Corrector, Cadillac.',
     ],
     equipment: ['Reformer', 'Cadillac', 'Wunda Chair', 'Ladder Barrel', 'Spine Corrector'],
+    gallery: [
+      ['cs1-ladder-barrel-bong', 'Học viên tập trên Ladder Barrel với bóng'],
+      ['cs1-hlv-chinh-barrel', 'Huấn luyện viên chỉnh tư thế trên Ladder Barrel'],
+      ['hang-reformer', 'Hàng máy Reformer'],
+      ['lo-xo-mau', 'Lò xo màu của máy Reformer'],
+    ],
   },
   {
     slug: 'pilates-tham',
@@ -150,8 +171,14 @@ export const classes = [
   {
     slug: 'dance',
     name: 'Dance',
-    image: 'lop-ta-guong',
-    alt: 'Lớp vận động trước gương ở Nuseva',
+    image: 'dance-ballet-dang-tay',
+    alt: 'Lớp ballet ở Nuseva Phan Đăng Lưu',
+    gallery: [
+      ['dance-hlv-chinh-dau', 'Huấn luyện viên chỉnh tư thế đầu cho học viên ballet'],
+      ['dance-ballet-gong', 'Tập ballet với thanh vịn'],
+      ['dance-ballet-nhom', 'Lớp ballet nhóm'],
+      ['dance-hiphop', 'Lớp nhảy hiphop'],
+    ],
     short: 'Ballet, Hiphop, Waacking, Popping cho người chưa từng dám nhảy.',
     formats: ['1:1', '1:2', 'Nhóm'],
     studios: ['phan-dang-luu'],
