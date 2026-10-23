@@ -2,6 +2,15 @@
 import Logo from './Logo.astro';
 import { site, studios, nav } from '../data/site.js';
 import { u } from '../lib/url.js';
+import icZalo from 'lucide-static/icons/message-circle.svg?raw';
+import icFb from 'lucide-static/icons/facebook.svg?raw';
+import icIg from 'lucide-static/icons/instagram.svg?raw';
+const ic = (svg) => svg.replace(/<!--[\s\S]*?-->/g, '').replace('<svg', '<svg aria-hidden="true"');
+const socials = [
+  { href: site.zalo, label: 'Zalo', icon: ic(icZalo) },
+  { href: site.facebook, label: 'Facebook', icon: ic(icFb) },
+  { href: site.instagram, label: 'Instagram', icon: ic(icIg) },
+];
 ---
 <footer class="ftr">
   <div class="wrap">
@@ -21,7 +30,7 @@ import { u } from '../lib/url.js';
         <div>
           <h3>Liên hệ</h3>
           <p><a href={`tel:${site.phoneRaw}`}>{site.hotline}</a><br /><a href={`mailto:${site.email}`}>{site.email}</a><br />{site.hours}, {site.hoursNote.toLowerCase()}</p>
-          <p class="ftr-social"><a href={site.zalo} target="_blank" rel="noopener">Zalo</a><a href={site.facebook} target="_blank" rel="noopener">Facebook</a><a href={site.instagram} target="_blank" rel="noopener">Instagram</a></p>
+          <ul class="ftr-social">{socials.map((x) => <li><a href={x.href} target="_blank" rel="noopener" aria-label={x.label} title={x.label}><span class="ico" set:html={x.icon} /></a></li>)}</ul>
         </div>
       </div>
     </div>
@@ -41,7 +50,11 @@ import { u } from '../lib/url.js';
   .ftr h3{font:400 18px/1.3 var(--display);margin-bottom:12px;color:var(--paper)}
   .ftr p{font-size:14px;line-height:1.8}
   .ftr .link{display:inline-block;margin-top:10px;font-size:13px}
-  .ftr-social{display:flex;gap:16px;margin-top:10px;font-weight:600}
+  .ftr-social{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;font-weight:600;font-size:13px}
+  .ftr-social a{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border:1px solid rgba(232,209,167,.35);border-radius:999px;transition:background .3s,color .3s,border-color .3s}
+  .ftr-social a:hover{background:var(--batter);color:var(--cocoa);border-color:var(--batter)}
+  .ico{display:inline-flex;width:20px;height:20px}
+  .ico :global(svg){width:20px;height:20px;stroke-width:1.6}
   .ftr-bot{display:flex;justify-content:space-between;gap:24px;padding-top:28px;font-size:13px;opacity:.8}
   .ftr-bot ul{display:flex;flex-wrap:wrap;gap:20px;list-style:none}
   @media (max-width:900px){.ftr-top{grid-template-columns:1fr}.ftr-cols{grid-template-columns:1fr 1fr}}
