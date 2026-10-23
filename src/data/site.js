@@ -10,6 +10,8 @@ export const site = {
   facebook: 'https://www.facebook.com/profile.php?id=61573248693470',
   instagram: 'https://www.instagram.com/nuseva.studio',
   email: 'nuseva.studio@gmail.com',
+  // Form đăng ký gửi về email này qua FormSubmit (formsubmit.co). Lần gửi đầu tiên cần bấm xác nhận trong email.
+  formEmail: 'nuseva.studio@gmail.com',
   hours: '8:00 – 21:00',
   hoursNote: 'Mở cửa hằng ngày',
   founded: 2025,

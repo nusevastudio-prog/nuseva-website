@@ -82,27 +82,44 @@ function lightbox() {
 
 /* ---------- form liên hệ: soạn tin, chép, mở Zalo ---------- */
 function contactForm() {
-  const f = document.querySelector('[data-zalo-form]');
+  const f = document.querySelector('[data-mail-form]');
   if (!f) return;
   const out = f.querySelector('[data-form-msg]');
+  const btn = f.querySelector('button[type="submit"]');
   f.addEventListener('submit', async (e) => {
     e.preventDefault();
     const d = new FormData(f);
-    if (!d.get('name') || !d.get('phone')) { out.textContent = 'Điền giúp tên và số điện thoại để Nuseva gọi lại nhé.'; return; }
-    const msg = [
-      'Chào Nuseva, mình muốn đặt buổi tập thử.',
-      `Tên: ${d.get('name')}`,
-      `SĐT: ${d.get('phone')}`,
-      d.get('studio') && `Studio: ${d.get('studio')}`,
-      d.get('class') && `Lớp quan tâm: ${d.get('class')}`,
-      d.get('time') && `Khung giờ rảnh: ${d.get('time')}`,
-      d.get('note') && `Ghi chú: ${d.get('note')}`,
-    ].filter(Boolean).join('\n');
-    try { await navigator.clipboard.writeText(msg); out.textContent = 'Đã chép nội dung. Zalo đang mở, bạn dán vào khung chat rồi gửi là xong.'; }
-    catch { out.textContent = 'Zalo đang mở. Bạn nhắn tên và số điện thoại cho Nuseva là được.'; }
-    window.gtag?.('event', 'generate_lead', { method: 'zalo_form' });
-    window.fbq?.('track', 'Lead');
-    window.open(f.dataset.zaloForm, '_blank', 'noopener');
+    if (d.get('_honey')) return;
+    const phone = String(d.get('phone') || '').replace(/\D/g, '');
+    if (!d.get('name') || phone.length < 9) { out.dataset.state = 'err'; out.textContent = 'Điền giúp tên và số điện thoại để Nuseva gọi lại nhé.'; return; }
+    btn.disabled = true; btn.textContent = 'Đang gửi…'; out.textContent = '';
+    const body = {
+      _subject: `Đăng ký tập thử: ${d.get('name')} – ${d.get('phone')}`,
+      _template: 'table',
+      _captcha: 'false',
+      'Họ và tên': d.get('name'),
+      'Số điện thoại': d.get('phone'),
+      'Studio': d.get('studio') || '',
+      'Lớp quan tâm': d.get('class') || 'Chưa biết',
+      'Khung giờ rảnh': d.get('time') || '',
+      'Ghi chú': d.get('note') || '',
+      'Trang gửi': location.href,
+    };
+    try {
+      const r = await fetch(f.action, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(body) });
+      const j = await r.json().catch(() => ({}));
+      if (!r.ok || String(j.success) === 'false') throw new Error(j.message || r.status);
+      f.reset();
+      out.dataset.state = 'ok';
+      out.textContent = 'Đã gửi. Nuseva sẽ gọi hoặc nhắn Zalo lại cho bạn trong giờ mở cửa.';
+      window.gtag?.('event', 'generate_lead', { method: 'form' });
+      window.fbq?.('track', 'Lead');
+    } catch {
+      out.dataset.state = 'err';
+      out.innerHTML = `Chưa gửi được. Bạn nhắn thẳng qua <a href="${f.dataset.zalo}" target="_blank" rel="noopener">Zalo</a> hoặc gọi <a href="tel:${f.dataset.tel}">${f.dataset.telLabel}</a> giúp Nuseva nhé.`;
+    } finally {
+      btn.disabled = false; btn.textContent = 'Gửi đăng ký';
+    }
   });
 }
 

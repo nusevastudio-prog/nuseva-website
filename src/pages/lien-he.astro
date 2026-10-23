@@ -5,10 +5,11 @@ import Pic from '../components/Pic.astro';
 import { site, studios, classes } from '../data/site.js';
 ---
 <Base title="Liên hệ và đặt buổi tập thử" description={`Đặt buổi tập thử Pilates ở Nuseva, buổi lẻ đầu tiên giảm 50%. Nhắn Zalo hoặc gọi ${site.hotline}. Studio ở Quận 1 và Phú Nhuận.`}>
-  <PageHero title="Đặt buổi tập thử" intro="Buổi lẻ đầu tiên giảm 50%. Điền mấy dòng bên dưới, Nuseva sẽ nhắn lại để xếp giờ. Muốn nhanh hơn thì nhắn Zalo hoặc gọi thẳng." />
+  <PageHero title="Đặt buổi tập thử" intro="Buổi lẻ đầu tiên giảm 50%. Điền mấy dòng bên dưới, Nuseva sẽ gọi hoặc nhắn Zalo lại để xếp giờ. Muốn nhanh hơn thì nhắn Zalo hoặc gọi thẳng." />
 
   <section class="wrap two">
-    <form class="form" data-zalo-form={site.zalo} novalidate>
+    <form class="form" action={`https://formsubmit.co/ajax/${site.formEmail}`} method="post" data-mail-form data-zalo={site.zalo} data-tel={site.phoneRaw} data-tel-label={site.hotline} novalidate>
+      <input type="text" name="_honey" tabindex="-1" autocomplete="off" class="sr" aria-hidden="true" />
       <div class="f2">
         <label>Họ và tên<input name="name" autocomplete="name" required /></label>
         <label>Số điện thoại<input name="phone" type="tel" inputmode="tel" autocomplete="tel" required /></label>
@@ -28,8 +29,7 @@ import { site, studios, classes } from '../data/site.js';
       </label>
       <label>Khung giờ bạn rảnh<input name="time" placeholder="Ví dụ: tối thứ 3, thứ 5 sau 18:00" /></label>
       <label>Ghi chú<textarea name="note" rows="3" placeholder="Có đang đau lưng, chấn thương hay mục tiêu gì cứ ghi vào"></textarea></label>
-      <button class="btn btn-wine" type="submit">Gửi qua Zalo</button>
-      <p class="hint">Bấm gửi, nội dung được chép sẵn và Zalo của Nuseva sẽ mở. Bạn chỉ cần dán vào khung chat.</p>
+      <div class="send"><button class="btn btn-wine" type="submit">Gửi đăng ký</button><a class="link" href={site.zalo} target="_blank" rel="noopener">Hoặc nhắn Zalo</a></div>
       <p class="msg" data-form-msg role="status" aria-live="polite"></p>
     </form>
 
@@ -76,8 +76,13 @@ import { site, studios, classes } from '../data/site.js';
   .opt input:checked+span small{color:var(--batter)}
   .opt input:focus-visible+span{outline:2px solid var(--wine);outline-offset:2px}
   .form .btn{align-self:flex-start;margin-top:6px}
-  .hint{font-size:13px;color:var(--caramel)}
-  .msg{font-size:14px;font-weight:600;color:var(--wine)}
+  .send{display:flex;align-items:center;gap:22px;flex-wrap:wrap;margin-top:6px}
+  .form .send .btn{margin-top:0}
+  .form .btn:disabled{opacity:.6;cursor:wait}
+  .msg{font-size:15px;font-weight:600;color:var(--wine)}
+  .msg:empty{display:none}
+  .msg[data-state=ok]{background:var(--paper);padding:16px 18px;border-radius:14px;color:var(--cocoa)}
+  .msg a{text-decoration:underline}
   .quick{display:grid;gap:10px}
   .q{display:flex;justify-content:space-between;align-items:center;padding:20px 22px;background:var(--paper);border-radius:16px;transition:background .3s}
   .q:hover{background:var(--batter)}
