@@ -63,6 +63,7 @@ export const studios = [
     image: 'mat-tien-cs2',
     imageAlt: 'Mặt tiền Nuseva Phan Đăng Lưu',
     gallery: [
+      ['cs2-mat-tien-ban-cong', 'Mặt tiền Nuseva Phan Đăng Lưu với ban công nhiều cây'],
       ['phong-may-guong', 'Phòng máy có gương'],
       ['phong-tham-barre', 'Phòng tập thảm có thanh vịn ballet'],
       ['dance-ballet-nhom', 'Lớp ballet nhóm'],

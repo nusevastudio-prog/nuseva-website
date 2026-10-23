@@ -3,6 +3,7 @@ export const album = [
   {
     title: 'Phan Đăng Lưu, nhìn từ ngoài',
     photos: [
+      ['cs2-mat-tien-ban-cong', 'Mặt tiền Nuseva Phan Đăng Lưu với ban công nhiều cây'],
       ['mat-tien-cs2', 'Mặt tiền Nuseva Phan Đăng Lưu'],
       ['nu-1-1437', 'Căn nhà Nuseva Phan Đăng Lưu với ban công nhiều cây'],
       ['nu-1-1462', 'Cửa gỗ đỏ và xe máy trước studio'],
