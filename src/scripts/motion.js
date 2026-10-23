@@ -132,10 +132,10 @@ function motion(onScroll) {
   const mast = document.querySelector('[data-mast]');
   if (mast) {
     const tl = gsap.timeline({ defaults: { ease: EASE } });
-    tl.fromTo('[data-mast-logo]', { opacity: 0, filter: 'blur(22px)', scale: 1.04 }, { opacity: 1, filter: 'blur(0px)', scale: 1, duration: 2.2, ease: 'power2.out', clearProps: 'filter' })
+    tl.fromTo('[data-mast-logo]', { opacity: 0, filter: 'blur(22px)', scale: 1.04 }, { opacity: 1, filter: 'blur(0px)', scale: 1, duration: 2.2, ease: 'power2.out' })
       .fromTo('[data-mast-cat]', { x: 120, opacity: 0 }, { x: 0, opacity: 1, duration: 1.6 }, 1.0)
       .fromTo('[data-mast-sub] > *', { y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: 1.1, stagger: 0.08 }, 1.0);
-    gsap.to('[data-mast-logo]', { yPercent: -18, opacity: 0.35, ease: 'none', scrollTrigger: { trigger: mast, start: 'top top', end: 'bottom top', scrub: true } });
+    gsap.fromTo('[data-mast-logo]', { yPercent: 0, opacity: 1 }, { yPercent: -18, opacity: 0.35, ease: 'none', immediateRender: false, scrollTrigger: { trigger: mast, start: 'top top', end: 'bottom top', scrub: true } });
     gsap.to('[data-mast-cat]', { x: -160, ease: 'none', scrollTrigger: { trigger: mast, start: 'top top', end: 'bottom top', scrub: true } });
   }
 
