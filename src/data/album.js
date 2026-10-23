@@ -56,7 +56,6 @@ export const album = [
     title: 'Lớp thảm, Yoga và lớp nhóm',
     photos: [
       ['tham-lop-nhom-nang-tay', 'Lớp Pilates thảm nhóm'],
-      ['nu-1-1513', 'Lớp nhóm ngồi nghe huấn luyện viên'],
       ['tham-hlv-chinh-chan', 'Huấn luyện viên đỡ chân học viên trên thảm'],
       ['nu-2-1953', 'Học viên xoay người trên thảm'],
       ['yoga-hlv-ngoi-thien', 'Huấn luyện viên ngồi thiền mở đầu lớp'],
@@ -71,7 +70,6 @@ export const album = [
       ['tham-ta-tay', 'Tập với tạ tay trên thảm'],
       ['nu-1-1598', 'Vươn tay cạnh cửa sổ'],
       ['nu-2-1918', 'Nâng ngực trên thảm'],
-      ['nu-1-1564', 'Huấn luyện viên chỉnh tư thế cho học viên'],
       ['yoga-lop-ngoi', 'Lớp ngồi vòng tròn'],
       ['nu-1-1712', 'Gập người về trước'],
       ['nu-2-1963', 'Lớp nhóm giãn người'],
