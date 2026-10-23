@@ -25,15 +25,12 @@ jobs:
           cache: npm
       - run: npm ci
       - name: Build
-        # Khi đã trỏ tên miền nusevastudio.com: đặt biến CUSTOM_DOMAIN=true trong Settings > Variables
+        env:
+          SITE_URL: https://nusevastudio.com
+          BASE_PATH: /
         run: |
-          if [ "${{ vars.CUSTOM_DOMAIN }}" = "true" ]; then
-            export SITE_URL=https://nusevastudio.com BASE_PATH=/
-          else
-            export SITE_URL=https://${{ github.repository_owner }}.github.io BASE_PATH=/${{ github.event.repository.name }}
-          fi
           npm run build
-          if [ "${{ vars.CUSTOM_DOMAIN }}" = "true" ]; then echo "nusevastudio.com" > dist/CNAME; fi
+          echo "nusevastudio.com" > dist/CNAME
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist

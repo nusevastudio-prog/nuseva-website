@@ -24,7 +24,7 @@ Lần đầu: vào repo > Settings > Pages > Source: chọn **GitHub Actions**.
 
 ### Chuyển tên miền nusevastudio.com sang web mới
 
-1. Repo > Settings > Secrets and variables > Actions > Variables: thêm `CUSTOM_DOMAIN` = `true`, rồi chạy lại workflow.
+1. (Đã làm) Workflow build cho tên miền nusevastudio.com.
 2. Repo > Settings > Pages > Custom domain: nhập `nusevastudio.com`.
 3. Ở trang quản trị tên miền (Nasani), sửa DNS:
    - 4 bản ghi `A` cho `@`: 185.199.108.153, 185.199.109.153, 185.199.110.153, 185.199.111.153
