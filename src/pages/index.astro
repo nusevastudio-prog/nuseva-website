@@ -10,8 +10,8 @@ const [main, ...rest] = classes;
 const gallery = [
   { n: 'lo-xo-mau', a: 'Lò xo màu dưới máy Reformer', c: 'Lò xo của máy Reformer. Mỗi màu một mức nặng.' },
   { n: 'hlv-chinh-form', a: 'Huấn luyện viên chỉnh tư thế cho học viên', c: 'Huấn luyện viên chỉnh từng tư thế.' },
-  { n: 'tham-cuon', a: 'Thảm tập xếp trên giá gỗ', c: 'Thảm, bóng, gạch tập có sẵn. Bạn chỉ cần mang vớ.' },
-  { n: 'phong-tham-barre', a: 'Phòng thảm có gióng barre', c: 'Phòng thảm và gióng barre ở Phan Đăng Lưu.' },
+  { n: 'tham-cuon', a: 'Thảm tập xếp trên giá gỗ', c: 'Thảm, bóng, gối tập có sẵn ở studio. Bạn chỉ cần mang vớ chống trượt.' },
+  { n: 'phong-tham-barre', a: 'Phòng tập thảm có thanh vịn ballet', c: 'Phòng tập thảm có thanh vịn ballet ở Phan Đăng Lưu.' },
   { n: 'tay-bong-tham', a: 'Tay học viên trên bóng tập', c: 'Lớp nhóm tối đa 6 người.' },
   { n: 'reformer-chot-lo-xo', a: 'Chốt lò xo trên máy Reformer', c: 'Đổi lò xo để tập nhẹ hơn hoặc nặng hơn.' },
   { n: 'bang-hieu-go', a: 'Biển hiệu Nuseva Studio', c: 'Pilates, Movement, Wellness.' },
@@ -165,7 +165,7 @@ const gallery = [
   <section class="sec price-sec">
     <div class="wrap">
       <div class="price">
-        <h2 class="d3">Giá mỗi buổi, tính từ</h2>
+        <h2 class="d3">Giá mỗi buổi tập, chỉ từ</h2>
         <div class="price-row">
           {prices.map((p) => (
             <div><b data-pop>{p.from}</b><span>{p.label}</span></div>

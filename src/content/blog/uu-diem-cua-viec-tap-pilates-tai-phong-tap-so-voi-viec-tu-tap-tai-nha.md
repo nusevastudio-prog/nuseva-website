@@ -16,7 +16,7 @@ Khi tự tập, bạn chỉ thấy mình qua gương hoặc cảm giác. Lỗi p
 
 ## 2. Có máy tập
 
-Ở nhà, bạn chỉ có thảm. Ở studio có Reformer, Cadillac, Wunda Chair, Ladder Barrel. Lò xo trên máy có thể **đỡ** bạn khi cơ còn yếu, hoặc **cản** bạn khi cần tập nặng hơn. Nhờ vậy người mới tập đúng biên độ sớm hơn, người tập lâu có thêm thử thách.
+Ở nhà, bạn chỉ có thảm. Ở studio có Reformer, Cadillac, Wunda Chair, Ladder Barrel. Lò xo trên máy có thể **đỡ** bạn khi cơ còn yếu, hoặc **cản** bạn khi cần tập nặng hơn. Nhờ vậy người mới tập đúng động tác sớm hơn, người tập lâu có thêm thử thách.
 
 ## 3. Có lộ trình
 

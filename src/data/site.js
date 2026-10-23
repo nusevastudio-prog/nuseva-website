@@ -32,7 +32,7 @@ export const studios = [
     embedQuery: '189B Cống Quỳnh, Cầu Ông Lãnh, Hồ Chí Minh',
     classes: ['pilates-may', 'pilates-tham'],
     formats: '1:1 và 1:2',
-    note: 'Studio nhỏ, chỉ dạy lớp kèm riêng 1:1 và 1:2.',
+    note: 'Studio nhỏ, chỉ dạy kèm riêng: 1 hoặc 2 người với một huấn luyện viên.',
     image: 'studio-cong-quynh',
     imageAlt: 'Phòng máy Cadillac và Reformer ở Nuseva Cống Quỳnh',
   },
@@ -47,7 +47,7 @@ export const studios = [
     embedQuery: '181/37/1 Phan Đăng Lưu, Cầu Kiệu, Hồ Chí Minh',
     classes: ['pilates-may', 'pilates-tham', 'barre', 'yoga', 'dance'],
     formats: '1:1, 1:2 và lớp nhóm 4–6 người',
-    note: 'Hai phòng tập: phòng máy và phòng thảm có gióng barre. Có thêm lớp nhóm.',
+    note: 'Studio rộng hơn, có hai phòng: một phòng đặt máy Pilates, một phòng tập thảm có thanh vịn ballet. Ngoài lớp kèm riêng còn có lớp nhóm 4–6 người.',
     image: 'mat-tien-cs2',
     imageAlt: 'Mặt tiền Nuseva Phan Đăng Lưu',
     equipment: ['Reformer', 'Cadillac', 'Wunda Chair', 'Ladder Barrel', 'Spine Corrector'],
@@ -66,15 +66,15 @@ export const classes = [
     level: 'Cơ bản đến nâng cao',
     duration: 60,
     priceFrom: '220k',
-    priceNote: 'kèm đôi 1:2; kèm riêng 1:1 từ 420k',
+    priceNote: 'lớp 1:2. Lớp 1:1 từ 420k',
     forWho: [
       'Người mới bắt đầu, chưa có nền tảng vận động',
       'Người cơ yếu, khó giữ đúng tư thế khi tự tập',
       'Người đang có vấn đề như thoát vị đĩa đệm, thoái hoá cột sống, lệch chậu',
     ],
     body: [
-      'Máy Pilates dùng lò xo để vừa đỡ vừa cản chuyển động. Người mới nhờ vậy tập đúng biên độ ngay từ đầu, người đã quen thì tăng lò xo để tập nặng hơn.',
-      'Mỗi buổi 60 phút theo giáo án huấn luyện viên viết riêng cho bạn, tập hoàn toàn trên máy chuyên dụng: Reformer, Wunda Chair, Ladder Barrel, Spine Corrector, Cadillac.',
+      'Máy Pilates dùng lò xo để vừa đỡ cơ thể, vừa tạo lực cản. Người mới nhờ vậy tập đúng động tác ngay từ đầu. Người đã quen thì tăng lò xo để tập nặng hơn.',
+      'Mỗi buổi 60 phút, huấn luyện viên soạn bài riêng cho bạn và tập hoàn toàn trên máy: Reformer, Wunda Chair, Ladder Barrel, Spine Corrector, Cadillac.',
     ],
     equipment: ['Reformer', 'Cadillac', 'Wunda Chair', 'Ladder Barrel', 'Spine Corrector'],
   },
@@ -83,7 +83,7 @@ export const classes = [
     name: 'Pilates thảm',
     image: 'lop-tham-nhom',
     alt: 'Lớp Pilates thảm ở Nuseva Phan Đăng Lưu',
-    short: 'Không có máy đỡ, bạn tự giữ biên độ. Có bài còn khó hơn tập máy.',
+    short: 'Tập trên thảm, không có máy đỡ nên cơ thể phải tự giữ thăng bằng. Có bài còn khó hơn tập máy.',
     formats: ['1:1', '1:2', 'Nhóm'],
     studios: ['cong-quynh', 'phan-dang-luu'],
     level: 'Cơ bản đến nâng cao',
@@ -92,12 +92,12 @@ export const classes = [
     priceNote: 'lớp nhóm',
     forWho: [
       'Hầu hết mọi người, kể cả người mới',
-      'Người muốn tự kiểm soát cơ thể mà không cần máy hỗ trợ',
+      'Người muốn tập mà không cần máy hỗ trợ',
       'Người đã tập máy, muốn thêm thử thách',
     ],
     body: [
-      'Không có máy hỗ trợ nên bạn phải tự kiểm soát biên độ và giữ thân người ổn định. Một số bài vì thế còn thử thách hơn khi tập trên máy.',
-      'Huấn luyện viên vẫn kèm sát và chỉnh dáng từng động tác. Lớp kèm 1:1 và 1:2 có ở cả hai studio, lớp nhóm 4–6 người chỉ có ở Phan Đăng Lưu.',
+      'Không có máy hỗ trợ nên cơ thể phải tự giữ thăng bằng và tự kiểm soát từng chuyển động. Vì vậy có những bài còn khó hơn tập trên máy.',
+      'Huấn luyện viên vẫn kèm sát và chỉnh tư thế từng động tác. Lớp kèm 1:1 và 1:2 có ở cả hai studio. Lớp nhóm 4–6 người chỉ có ở Phan Đăng Lưu.',
     ],
     equipment: ['Thảm', 'Bóng', 'Gạch tập', 'Tạ tay'],
   },
@@ -105,8 +105,8 @@ export const classes = [
     slug: 'barre',
     name: 'Barre',
     image: 'lop-barre',
-    alt: 'Lớp Barre tập với gióng ballet',
-    short: 'Pilates, fitness và ballet trên gióng. Nhịp nhanh, đốt nhiều hơn.',
+    alt: 'Lớp Barre tập với thanh vịn ballet',
+    short: 'Kết hợp Pilates, fitness và ballet, có thanh vịn. Nhịp nhanh hơn, ra mồ hôi nhiều hơn.',
     formats: ['1:1', '1:2', 'Nhóm'],
     studios: ['phan-dang-luu'],
     level: 'Cơ bản đến nâng cao',
@@ -119,10 +119,10 @@ export const classes = [
       'Người thích tập theo nhạc, theo nhịp',
     ],
     body: [
-      'Barre lấy cảm hứng từ Pilates, fitness và ballet. Buổi tập 60 phút kết hợp tập thảm với gióng ballet.',
+      'Barre kết hợp Pilates, fitness và ballet. Buổi tập 60 phút gồm phần tập trên thảm và phần tập đứng, tay vịn thanh ballet.',
       'Chuyển động nhanh nhưng vẫn có kiểm soát, đi theo nhịp nhạc. Hợp với ai thích cảm giác vận động liên tục.',
     ],
-    equipment: ['Gióng ballet', 'Thảm', 'Bóng', 'Tạ tay'],
+    equipment: ['Thanh vịn ballet', 'Thảm', 'Bóng', 'Tạ tay'],
   },
   {
     slug: 'yoga',
@@ -137,13 +137,13 @@ export const classes = [
     priceFrom: '130k',
     priceNote: 'lớp nhóm',
     forWho: [
-      'Người muốn cải thiện biên độ và độ dẻo',
+      'Người muốn dẻo hơn, cử động khớp thoải mái hơn',
       'Người mới bắt đầu Yoga',
       'Người muốn được kèm sát thay vì tập lớp đông',
     ],
     body: [
       'Hầu hết lớp Yoga ở Nuseva là lớp căn bản và ít người, nên huấn luyện viên theo được từng chuyển động của bạn.',
-      'Phù hợp để cải thiện biên độ khớp và độ dẻo, đặc biệt khi bạn mới bắt đầu.',
+      'Hợp với người muốn dẻo hơn và cử động khớp thoải mái hơn, nhất là khi mới bắt đầu.',
     ],
     equipment: ['Thảm', 'Gạch tập', 'Dây'],
   },
@@ -174,9 +174,9 @@ export const classes = [
 ];
 
 export const prices = [
-  { label: 'Kèm riêng 1:1', from: '420k', unit: 'mỗi buổi', note: 'Pilates máy, Pilates thảm và các lớp khác' },
-  { label: 'Kèm đôi 1:2', from: '220k', unit: 'mỗi buổi', note: 'Đi cùng một người bạn' },
-  { label: 'Lớp nhóm', from: '130k', unit: 'mỗi buổi', note: '4–6 người, ở Phan Đăng Lưu' },
+  { label: 'Kèm riêng 1:1', from: '420k', unit: 'mỗi buổi', note: 'Một huấn luyện viên, một học viên. Áp dụng cho mọi lớp' },
+  { label: 'Kèm đôi 1:2', from: '220k', unit: 'mỗi buổi', note: 'Hai người tập cùng một huấn luyện viên' },
+  { label: 'Lớp nhóm', from: '130k', unit: 'mỗi buổi', note: 'Nhóm 4–6 người, chỉ có ở Phan Đăng Lưu' },
 ];
 
 export const policies = [
