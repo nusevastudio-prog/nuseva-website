@@ -4,63 +4,26 @@ import PageHero from '../components/PageHero.astro';
 import Pic from '../components/Pic.astro';
 import CtaBand from '../components/CtaBand.astro';
 import { getImage } from 'astro:assets';
+import { album } from '../data/album.js';
 const imgs = import.meta.glob('../assets/img/*.jpg', { eager: true });
-const photos = [
-  ['cs1-hai-reformer-rem', 'Hai máy Reformer ở Cống Quỳnh'],
-  ['hang-reformer', 'Hàng máy Reformer'],
-  ['barre-arabesque', 'Lớp Barre bên thanh vịn ballet'],
-  ['tham-lop-nhom-nang-tay', 'Lớp Pilates thảm nhóm'],
-  ['may-wunda-chair', 'Hai máy Wunda Chair'],
-  ['yoga-hlv-chinh-down-dog', 'Huấn luyện viên chỉnh tư thế lớp yoga'],
-  ['tham-teaser', 'Học viên giữ tư thế teaser'],
-  ['barre-gian-co', 'Giãn cơ trên thanh vịn'],
-  ['may-spine-corrector', 'Spine Corrector và Wunda Chair'],
-  ['tham-hlv-chinh-chan', 'Huấn luyện viên đỡ chân học viên trên thảm'],
-  ['cs1-hai-hoc-vien-barrel', 'Học viên tập Ladder Barrel ở Cống Quỳnh'],
-  ['dance-ballet-gong', 'Lớp ballet với thanh vịn'],
-  ['studio-cong-quynh', 'Phòng máy ở Nuseva Cống Quỳnh'],
-  ['dance-hiphop', 'Lớp nhảy hiphop'],
-  ['cs1-goc-sofa', 'Góc sofa và cửa sổ treo cây ở Cống Quỳnh'],
-  ['cs1-ladder-barrel-bong', 'Tập Ladder Barrel với bóng ở Cống Quỳnh'],
-  ['dance-hlv-chinh-dau', 'Huấn luyện viên chỉnh tư thế lớp ballet'],
-  ['cs1-hlv-chinh-barrel', 'Huấn luyện viên chỉnh tư thế ở Cống Quỳnh'],
-  ['dance-ballet-nhom', 'Lớp ballet nhóm'],
-  ['cs1-phong-barrel', 'Góc phòng tập ở Cống Quỳnh'],
-  ['cs1-nhin-qua-rem', 'Phòng Ladder Barrel nhìn qua rèm ở Cống Quỳnh'],
-  ['cs1-cay-monstera', 'Chậu monstera ở Cống Quỳnh'],
-  ['dance-ballet-dang-tay', 'Lớp ballet'],
-  ['cs1-bang-hieu', 'Biển treo Nuseva ở Cống Quỳnh'],
-  ['hlv-chinh-form', 'Huấn luyện viên chỉnh tư thế'],
-  ['lo-xo-mau', 'Lò xo màu của máy Reformer'],
-  ['yoga-gian-tay', 'Học viên giãn tay trên thảm'],
-  ['phong-tham-barre', 'Phòng tập thảm có thanh vịn ballet'],
-  ['bang-hieu-go', 'Biển hiệu Nuseva Studio'],
-  ['barre-tay-gong', 'Tay đặt trên thanh vịn ballet'],
-  ['phong-may-cadillac', 'Máy Cadillac'],
-  ['tham-nang-chan', 'Học viên tập nâng chân trên thảm'],
-  ['tham-cuon', 'Thảm tập trên giá gỗ'],
-  ['lop-tham-nhom', 'Lớp Pilates thảm nhóm'],
-  ['plank-tham', 'Plank trên thảm'],
-  ['reformer-chot-lo-xo', 'Chốt lò xo Reformer'],
-  ['tay-bong-tham', 'Bóng tập và gối tập'],
-  ['mat-tien-cs2', 'Mặt tiền Nuseva Phan Đăng Lưu'],
-  ['lop-barre', 'Lớp Barre'],
-  ['buoc-vao-lop', 'Học viên bước vào lớp'],
-  ['phong-may-guong', 'Phòng máy có gương'],
-  ['hoc-vien-cam-tham', 'Học viên cầm thảm vào lớp'],
-  ['lop-tham-bong', 'Lớp thảm với bóng'],
-  ['cadillac-reformer', 'Cadillac và Reformer'],
-  ['phong-tham-trong', 'Phòng thảm trước giờ lớp'],
-];
+const photos = album.flatMap((g) => g.photos);
 const full = await Promise.all(photos.map(([n]) => { const m = imgs[`../assets/img/${n}.jpg`].default; return getImage({ src: m, width: Math.min(m.width, 1800), format: "webp" }); }));
+let idx = 0;
+const groups = album.map((g, k) => ({ id: `nhom-${k}`, title: g.title, items: g.photos.map(([n, a]) => ({ n, a, src: full[idx++].src })) }));
 ---
 <Base title="Album ảnh" description="Ảnh thật ở Nuseva Studio: phòng máy, phòng thảm, lớp học ở Cống Quỳnh và Phan Đăng Lưu.">
-  <PageHero title="Album ảnh" intro="Ảnh thật ở hai studio Cống Quỳnh và Phan Đăng Lưu. Bấm vào ảnh để xem lớn." />
-  <section class="wrap grid">
-    {photos.map(([n, a], i) => (
-      <button class="it" data-full={full[i].src} data-lb aria-label={`Xem lớn: ${a}`} data-reveal><Pic name={n} alt={a} sizes="(min-width: 900px) 33vw, 50vw" /></button>
-    ))}
-  </section>
+  <PageHero title="Album ảnh" intro={`${photos.length} ảnh chụp thật ở Cống Quỳnh và Phan Đăng Lưu. Bấm vào ảnh để xem lớn nha.`} />
+  <nav class="wrap jump" aria-label="Nhóm ảnh">{groups.map((g) => <a href={'#' + g.id}>{g.title} <span>{g.items.length}</span></a>)}</nav>
+  {groups.map((g) => (
+    <section class="wrap grp" id={g.id}>
+      <h2 class="d3">{g.title}</h2>
+      <div class="grid">
+        {g.items.map((p) => (
+          <button class="it" data-full={p.src} data-lb aria-label={'Xem lớn: ' + p.a} data-reveal><Pic name={p.n} alt={p.a} sizes="(min-width: 900px) 33vw, 50vw" /></button>
+        ))}
+      </div>
+    </section>
+  ))}
   <dialog class="lb" data-lightbox aria-label="Xem ảnh">
     <img alt="" />
     <button class="lb-x" data-close aria-label="Đóng">Đóng</button>
@@ -71,6 +34,12 @@ const full = await Promise.all(photos.map(([n]) => { const m = imgs[`../assets/i
   <CtaBand />
 </Base>
 <style>
+  .jump{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:clamp(32px,4vw,56px)}
+  .jump a{padding:10px 16px;border:1px solid var(--line);border-radius:999px;font-size:14px;transition:background .3s,color .3s}
+  .jump a:hover{background:var(--wine);color:var(--paper);border-color:var(--wine)}
+  .jump span{opacity:.6;margin-left:4px}
+  .grp{scroll-margin-top:96px;margin-bottom:clamp(48px,6vw,88px)}
+  .grp h2{margin-bottom:24px}
   .grid{columns:3;column-gap:20px}
   .it{display:block;width:100%;margin-bottom:20px;border-radius:var(--r);overflow:hidden;break-inside:avoid;cursor:zoom-in}
   .it :global(picture){height:auto}

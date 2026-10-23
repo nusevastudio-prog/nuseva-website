@@ -5,16 +5,23 @@ import Logo from '../components/Logo.astro';
 import CtaBand from '../components/CtaBand.astro';
 import { site, studios, classes, prices, faqs } from '../data/site.js';
 import { u } from '../lib/url.js';
+import { album } from '../data/album.js';
 
 const [main, ...rest] = classes;
+const albumCount = album.reduce((t, g) => t + g.photos.length, 0);
 const gallery = [
+  { n: 'nu-1-1810', a: 'Hàng máy Reformer ở Phan Đăng Lưu', c: 'Phòng máy ở Phan Đăng Lưu.' },
   { n: 'lo-xo-mau', a: 'Lò xo màu dưới máy Reformer', c: 'Lò xo của máy Reformer. Mỗi màu một mức nặng.' },
-  { n: 'hlv-chinh-form', a: 'Huấn luyện viên chỉnh tư thế cho học viên', c: 'Huấn luyện viên chỉnh từng tư thế.' },
-  { n: 'tham-cuon', a: 'Thảm tập xếp trên giá gỗ', c: 'Thảm, bóng, gối tập có sẵn ở studio. Bạn chỉ cần mang vớ chống trượt.' },
-  { n: 'phong-tham-barre', a: 'Phòng tập thảm có thanh vịn ballet', c: 'Phòng tập thảm có thanh vịn ballet ở Phan Đăng Lưu.' },
-  { n: 'tay-bong-tham', a: 'Tay học viên trên bóng tập', c: 'Lớp nhóm tối đa 6 người.' },
-  { n: 'reformer-chot-lo-xo', a: 'Chốt lò xo trên máy Reformer', c: 'Đổi lò xo để tập nhẹ hơn hoặc nặng hơn.' },
-  { n: 'bang-hieu-go', a: 'Biển hiệu Nuseva Studio', c: 'Pilates, Movement, Wellness.' },
+  { n: 'nu-1-1555', a: 'Huấn luyện viên chỉnh tay học viên', c: 'Huấn luyện viên chỉnh từng tư thế.' },
+  { n: 'nu-1-1757', a: 'Kệ thảm, bóng và gạch tập', c: 'Thảm, bóng, gạch tập có sẵn. Bạn chỉ cần mang vớ chống trượt.' },
+  { n: 'nu-1-1773', a: 'Máy Spine Corrector', c: 'Spine Corrector, tập cho lưng và cột sống.' },
+  { n: 'nu-2-1975', a: 'Lớp nhóm tập với bóng nhỏ', c: 'Lớp nhóm tối đa 6 người.' },
+  { n: 'nu-1-1688', a: 'Học viên tập bên thanh vịn ballet', c: 'Barre: một nửa buổi tập đứng bên thanh vịn.' },
+  { n: 'cs1-goc-sofa', a: 'Góc sofa cạnh cửa sổ treo cây ở Cống Quỳnh', c: 'Góc ngồi nghỉ ở Cống Quỳnh.' },
+  { n: 'nu-2-2006', a: 'Chốt lò xo trên máy Reformer', c: 'Đổi lò xo để tập nhẹ hơn hoặc nặng hơn.' },
+  { n: 'nu-1-1722', a: 'Học viên giữ tư thế teaser trên thảm', c: 'Pilates thảm: không có máy đỡ, cơ thể tự giữ.' },
+  { n: 'nu-1-1834', a: 'Ban công nhiều cây ở Phan Đăng Lưu', c: 'Ban công ở Phan Đăng Lưu.' },
+  { n: 'nu-1-1456', a: 'Bảng hiệu Nuseva Studio', c: 'Pilates, Movement, Wellness.' },
 ];
 ---
 <Base>
@@ -149,7 +156,7 @@ const gallery = [
   <section class="inside" data-hscroll>
     <div class="inside-head wrap">
       <h2 class="d2">Bên trong Nuseva</h2>
-      <a class="link" href={u('album-anh')}>Xem album</a>
+      <a class="link" href={u('album-anh')}>Xem cả album ({albumCount} ảnh)</a>
     </div>
     <div class="inside-track" data-hscroll-track>
       {gallery.map((g, i) => (
