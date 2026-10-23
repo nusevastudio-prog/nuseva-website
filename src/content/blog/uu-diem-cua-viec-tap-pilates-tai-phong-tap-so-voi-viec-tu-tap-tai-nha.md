@@ -6,7 +6,7 @@ image: "hlv-chinh-form"
 order: 3
 ---
 
-Video Pilates trên mạng rất nhiều, tập ở nhà thì rẻ và tiện. Vậy đi studio có đáng không? Câu trả lời tuỳ vào việc bạn đang ở đâu với cơ thể mình. Dưới đây là những khác biệt thật sự.
+Video Pilates trên mạng rất nhiều, tập ở nhà thì rẻ và tiện. Vậy đi studio có đáng không? Còn tuỳ bạn đang ở mức nào. Đây là mấy chỗ khác nhau thật sự.
 
 ## 1. Có người nhìn thấy bạn
 

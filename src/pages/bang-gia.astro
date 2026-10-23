@@ -6,7 +6,7 @@ import CtaBand from '../components/CtaBand.astro';
 import { prices, policies, site } from '../data/site.js';
 ---
 <Base title="Bảng giá" description="Giá tập Pilates ở Nuseva: kèm riêng 1:1 từ 420k/buổi, kèm đôi 1:2 từ 220k/buổi, lớp nhóm từ 130k/buổi. Buổi lẻ đầu tiên giảm 50%.">
-  <PageHero title="Bảng giá" intro="Giá tính theo buổi 60 phút, đây là mức thấp nhất của từng hình thức. Buổi lẻ đầu tiên giảm 50%." />
+  <PageHero title="Bảng giá" intro="Giá dưới đây là giá thấp nhất cho 1 buổi 60 phút của từng hình thức. Buổi lẻ đầu tiên giảm 50%." />
 
   <section class="wrap">
     <div class="cards" data-stagger>
@@ -26,12 +26,12 @@ import { prices, policies, site } from '../data/site.js';
     <div class="wrap two">
       <div>
         <h2 class="d2" data-split>Gói tập và chính sách</h2>
-        <p class="sub" data-reveal>Bảng giá chi tiết theo gói (số buổi, hạn dùng) Nuseva gửi qua Zalo, kèm tư vấn gói hợp với lịch của bạn.</p>
+        <p class="sub" data-reveal>Giá theo gói (bao nhiêu buổi, dùng trong bao lâu) thì Nu gửi qua Zalo, tiện tư vấn luôn gói nào hợp lịch của bạn.</p>
         <a class="btn btn-wine" href={site.zalo} target="_blank" rel="noopener" data-reveal>Nhận bảng giá qua Zalo</a>
       </div>
       <dl class="pol">
         {policies.map((p) => <div data-reveal><dt class="d4">{p.q}</dt><dd>{p.a}</dd></div>)}
-        <div data-reveal><dt class="d4">Thanh toán</dt><dd>Nhắn Nuseva để biết các hình thức thanh toán hiện có.</dd></div>
+        <div data-reveal><dt class="d4">Thanh toán</dt><dd>Trả bằng cách nào thì nhắn Nu hỏi nha.</dd></div>
       </dl>
     </div>
   </section>

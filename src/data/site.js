@@ -195,7 +195,7 @@ export const classes = [
     ],
     body: [
       'Hầu hết lớp Yoga ở Nuseva là lớp căn bản và ít người, nên huấn luyện viên theo được từng chuyển động của bạn.',
-      'Hợp với người muốn dẻo hơn và cử động khớp thoải mái hơn, nhất là khi mới bắt đầu.',
+      'Người cứng hay mới bắt đầu cũng tập được. Dẻo lên từ từ, khớp cử động dễ hơn.',
     ],
     equipment: ['Thảm', 'Gạch tập', 'Dây'],
   },
@@ -220,11 +220,11 @@ export const classes = [
     forWho: [
       'Người thích nhảy nhưng chưa từng dám thử',
       'Người muốn vận động cùng âm nhạc',
-      'Người muốn một buổi tập vui hơn cho tinh thần',
+      'Người muốn một buổi tập vui, không nặng nề',
     ],
     body: [
       'Nuseva có 4 lớp nhảy cơ bản: Ballet, Hiphop, Waacking và Popping.',
-      'Tập cùng âm nhạc là một cách nhẹ nhàng để vận động cả cơ thể lẫn tinh thần. Không cần biết nhảy trước.',
+      'Nhảy theo nhạc thì vui, ra mồ hôi mà đầu óc cũng nhẹ hơn. Không cần biết nhảy trước.',
     ],
     styles: ['Ballet', 'Hiphop', 'Waacking', 'Popping'],
     equipment: ['Gương', 'Sàn gỗ'],
@@ -240,7 +240,7 @@ export const prices = [
 export const policies = [
   { q: 'Buổi tập thử', a: 'Buổi lẻ đầu tiên được giảm 50%.' },
   { q: 'Đổi hoặc huỷ buổi', a: 'Báo trước ít nhất 1 tiếng với lớp 1:1 và 1:2, 2 tiếng với lớp nhóm.' },
-  { q: 'Bảo lưu gói tập', a: 'Nhắn Nuseva để được gửi chính sách bảo lưu chi tiết.' },
+  { q: 'Bảo lưu gói tập', a: 'Cần bảo lưu thì nhắn Nu, Nu gửi chi tiết cho.' },
 ];
 
 export const faqs = [

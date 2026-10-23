@@ -10,7 +10,7 @@ import { u } from '../lib/url.js';
 const cname = (slug) => classes.find((c) => c.slug === slug).name;
 ---
 <Base title="Studio" description="Hai studio Pilates của Nuseva: Cống Quỳnh (Quận 1) và Phan Đăng Lưu (Phú Nhuận). Địa chỉ, giờ mở cửa, lớp học và thiết bị ở từng nơi.">
-  <PageHero title="Hai studio" intro={`Một ở Quận 1, một ở Phú Nhuận. Mở cửa ${site.hours}, ${site.hoursNote.toLowerCase()}. Pilates máy và thảm kèm riêng có ở cả hai nơi.`} />
+  <PageHero title="Hai studio" intro={`Một ở Quận 1, một ở Phú Nhuận. Mở cửa mỗi ngày, ${site.hours}. Pilates máy và thảm kèm riêng có ở cả hai nơi.`} />
 
   {studios.map((s, i) => (
     <section class={'st' + (i % 2 ? ' st-alt' : '')} id={s.id}>
