@@ -37,3 +37,19 @@ Nameserver: NS1/NS2/NS3.NASANI.VN. Nhà đăng ký: P.A. Viet Nam. Hết hạn: 
 4. Lưu cấu hình. Chờ DNS cập nhật.
 
 Điều kiện: hosting Nasani còn hạn. Nếu hosting đã hết hạn thì không quay về được bằng cách này.
+
+## Trạng thái lúc chuyển (23/10/2026)
+
+DNS sau khi lưu trên Nasani (10 bản ghi):
+
+| Host | Loại | Giá trị | TTL |
+|---|---|---|---|
+| @ | A | 185.199.108.153 / .109 / .110 / .111 | 3600 |
+| www | CNAME | nusevastudio-prog.github.io | 3600 |
+| _dmarc | TXT | v=DMARC1; p=reject; aspf=s; adkim=s; pct=100; | 3600 |
+| x._domainkey | TXT | DKIM (giữ nguyên) | 3600 |
+| @ | TXT | v=spf1 a mx ip4:210.2.87.25 -all | 3600 |
+| @ | MX | mr.dotvndns.vn (ưu tiên 10) | 300 |
+| mail | A | 210.2.87.25 | 3600 |
+
+Ghi chú: bản ghi MX đổi sang `mr.dotvndns.vn` (TTL 300) do người khác chỉnh trước đó, không phải lúc chuyển web. Phần mail không bị đụng tới.
