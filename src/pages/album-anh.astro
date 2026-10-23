@@ -6,16 +6,20 @@ import CtaBand from '../components/CtaBand.astro';
 import { getImage } from 'astro:assets';
 const imgs = import.meta.glob('../assets/img/*.jpg', { eager: true });
 const photos = [
+  ['cs1-hai-reformer-rem', 'Hai máy Reformer ở Cống Quỳnh'],
   ['hang-reformer', 'Hàng máy Reformer'],
   ['cs1-hai-hoc-vien-barrel', 'Học viên tập Ladder Barrel ở Cống Quỳnh'],
   ['dance-ballet-gong', 'Lớp ballet với thanh vịn'],
   ['studio-cong-quynh', 'Phòng máy ở Nuseva Cống Quỳnh'],
   ['dance-hiphop', 'Lớp nhảy hiphop'],
+  ['cs1-goc-sofa', 'Góc sofa và cửa sổ treo cây ở Cống Quỳnh'],
   ['cs1-ladder-barrel-bong', 'Tập Ladder Barrel với bóng ở Cống Quỳnh'],
   ['dance-hlv-chinh-dau', 'Huấn luyện viên chỉnh tư thế lớp ballet'],
   ['cs1-hlv-chinh-barrel', 'Huấn luyện viên chỉnh tư thế ở Cống Quỳnh'],
   ['dance-ballet-nhom', 'Lớp ballet nhóm'],
   ['cs1-phong-barrel', 'Góc phòng tập ở Cống Quỳnh'],
+  ['cs1-nhin-qua-rem', 'Phòng Ladder Barrel nhìn qua rèm ở Cống Quỳnh'],
+  ['cs1-cay-monstera', 'Chậu monstera ở Cống Quỳnh'],
   ['dance-ballet-dang-tay', 'Lớp ballet'],
   ['cs1-bang-hieu', 'Biển treo Nuseva ở Cống Quỳnh'],
   ['hlv-chinh-form', 'Huấn luyện viên chỉnh tư thế'],
