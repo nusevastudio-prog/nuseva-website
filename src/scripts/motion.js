@@ -136,6 +136,8 @@ function motion(onScroll) {
       .fromTo('[data-mast-cat]', { x: 120, opacity: 0 }, { x: 0, opacity: 1, duration: 1.6 }, 1.0)
       .fromTo('[data-mast-sub] > *', { y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: 1.1, stagger: 0.08 }, 1.0);
     gsap.fromTo('[data-mast-logo]', { yPercent: 0, opacity: 1 }, { yPercent: -18, opacity: 0.35, ease: 'none', immediateRender: false, scrollTrigger: { trigger: mast, start: 'top top', end: 'bottom top', scrub: true } });
+    gsap.fromTo('[data-mast-bg]', { scale: 1.12, opacity: 0 }, { scale: 1, opacity: 1, duration: 2.6, ease: 'power2.out' });
+    gsap.to('[data-mast-bg]', { yPercent: 14, ease: 'none', scrollTrigger: { trigger: mast, start: 'top top', end: 'bottom top', scrub: true } });
     gsap.to('[data-mast-cat]', { x: -160, ease: 'none', scrollTrigger: { trigger: mast, start: 'top top', end: 'bottom top', scrub: true } });
   }
 

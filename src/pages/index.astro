@@ -20,6 +20,8 @@ const gallery = [
 <Base>
   <!-- Mở trang -->
   <section class="mast" data-mast>
+    <div class="mast-bg" data-mast-bg aria-hidden="true"><Pic name="mat-tien-cs2-ngang" alt="" loading="eager" fetchpriority="high" sizes="100vw" /></div>
+    <div class="mast-grain" aria-hidden="true"></div>
     <div class="wrap mast-in">
       <h1 class="sr">Nuseva Studio, Pilates kèm riêng ở Quận 1 và Phú Nhuận</h1>
       <div class="mast-logo" data-mast-logo><Logo class="mast-svg" /></div>
@@ -27,8 +29,8 @@ const gallery = [
       <div class="mast-sub" data-mast-sub>
         <p class="d4">Pilates kèm riêng ở Quận 1 và Phú Nhuận</p>
         <div class="mast-btns">
-          <a class="btn btn-wine" href={u('lien-he')}>Đặt buổi tập thử</a>
-          <a class="btn btn-ghost" href={u('lop-hoc')}>Xem lớp học</a>
+          <a class="btn btn-cream" href={u('lien-he')}>Đặt buổi tập thử</a>
+          <a class="btn mast-ghost" href={u('lop-hoc')}>Xem lớp học</a>
         </div>
       </div>
     </div>
@@ -193,17 +195,23 @@ const gallery = [
 </Base>
 
 <style>
-  .mast{padding:clamp(40px,6vw,72px) 0 clamp(36px,5vw,56px);overflow:hidden}
-  .mast-in{position:relative;text-align:center}
-  .mast-logo{color:var(--wine);width:min(1040px,94%);margin:0 auto}
+  .mast{background:var(--cocoa);position:relative;isolation:isolate;overflow:hidden;min-height:calc(100svh - 72px);display:flex;align-items:center;padding:clamp(56px,8vw,96px) 0;color:var(--paper)}
+  .mast-bg{position:absolute;inset:-4%;z-index:-3}
+  .mast-bg :global(img){width:100%;height:100%;object-fit:cover;object-position:50% 60%;filter:blur(7px) saturate(.9);transform:scale(1.06)}
+  .mast::before{content:"";position:absolute;inset:0;z-index:-2;background:linear-gradient(180deg,rgba(68,45,28,.42),rgba(68,45,28,.30) 45%,rgba(68,45,28,.58))}
+  .mast-grain{position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:.22;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+  .mast-in{position:relative;text-align:center;width:100%}
+  .mast-logo{color:var(--paper);width:min(1000px,92%);margin:0 auto;filter:drop-shadow(0 2px 24px rgba(43,28,17,.25))}
   :global(.mast-svg){width:100%;height:auto}
-  .mast-cat{position:absolute;right:7%;top:-6px;width:clamp(96px,15vw,210px);color:var(--caramel)}
+  .mast-cat{position:absolute;right:6%;top:-10px;width:clamp(96px,14vw,200px);color:var(--batter)}
   .mast-cat :global(svg){width:100%;height:auto;transform:scaleX(-1)}
-  .mast-sub{display:flex;flex-direction:column;align-items:center;gap:24px;margin-top:clamp(20px,3vw,36px)}
-  .mast-sub .d4{color:var(--caramel)}
+  .mast-sub{display:flex;flex-direction:column;align-items:center;gap:24px;margin-top:clamp(24px,3vw,40px)}
+  .mast-sub .d4{color:var(--paper);text-shadow:0 1px 16px rgba(43,28,17,.35)}
+  .mast-ghost{color:var(--paper);border-color:rgba(246,235,214,.7)}
+  .mast-ghost:hover{background:var(--paper);color:var(--wine);border-color:var(--paper)}
   .mast-btns{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
 
-  .hero-pic{height:clamp(420px,72vh,820px);overflow:hidden;margin:0 auto;clip-path:inset(0 var(--gut) 0 var(--gut) round 22px)}
+  .hero-pic{height:clamp(420px,72vh,820px);overflow:hidden;margin:clamp(64px,8vw,110px) auto 0;clip-path:inset(0 var(--gut) 0 var(--gut) round 22px)}
   :global(.js) .hero-pic{clip-path:inset(0% 7% 0% 7% round 22px)}
   .hero-pic :global(img){width:100%;height:100%;object-fit:cover}
 
@@ -297,7 +305,8 @@ const gallery = [
   }
   @media (max-width:560px){
     .cls{grid-template-columns:1fr}.tile-main{grid-column:auto}.tile{min-height:380px}
-    .mast-cat{top:-14px;right:2%}
+    .mast-cat{top:-28px;right:2%}
+    .mast{min-height:calc(88svh - 64px)}
     .hero-pic{height:62vh}
     :global(.js) .hero-pic{clip-path:inset(0 var(--gut) round 16px)}
   }
