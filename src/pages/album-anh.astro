@@ -7,6 +7,7 @@ import { getImage } from 'astro:assets';
 const imgs = import.meta.glob('../assets/img/*.jpg', { eager: true });
 const photos = [
   ['hang-reformer', 'Hàng máy Reformer'],
+  ['studio-cong-quynh', 'Phòng máy ở Nuseva Cống Quỳnh'],
   ['hlv-chinh-form', 'Huấn luyện viên chỉnh tư thế'],
   ['lo-xo-mau', 'Lò xo màu của máy Reformer'],
   ['yoga-gian-tay', 'Học viên giãn tay trên thảm'],
@@ -31,8 +32,8 @@ const photos = [
 ];
 const full = await Promise.all(photos.map(([n]) => { const m = imgs[`../assets/img/${n}.jpg`].default; return getImage({ src: m, width: Math.min(m.width, 1800), format: "webp" }); }));
 ---
-<Base title="Album ảnh" description="Ảnh thật ở Nuseva Studio: phòng máy, phòng thảm, lớp học và từng góc nhỏ ở Phan Đăng Lưu.">
-  <PageHero title="Album ảnh" intro="Ảnh chụp ở studio Phan Đăng Lưu. Bấm vào ảnh để xem lớn." />
+<Base title="Album ảnh" description="Ảnh thật ở Nuseva Studio: phòng máy, phòng thảm, lớp học ở Cống Quỳnh và Phan Đăng Lưu.">
+  <PageHero title="Album ảnh" intro="Ảnh thật ở hai studio Cống Quỳnh và Phan Đăng Lưu. Bấm vào ảnh để xem lớn." />
   <section class="wrap grid">
     {photos.map(([n, a], i) => (
       <button class="it" data-full={full[i].src} data-lb aria-label={`Xem lớn: ${a}`} data-reveal><Pic name={n} alt={a} sizes="(min-width: 900px) 33vw, 50vw" /></button>

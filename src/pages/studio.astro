@@ -15,7 +15,7 @@ const cname = (slug) => classes.find((c) => c.slug === slug).name;
     <section class={'st' + (i % 2 ? ' st-alt' : '')} id={s.id}>
       <div class="wrap st-in">
         <div class="st-pic" data-reveal>
-          {s.image ? <div class="pic" data-parallax><Pic name={s.image} alt={`Mặt tiền ${s.name}`} sizes="(min-width: 900px) 45vw, 100vw" /></div>
+          {s.image ? <div class="pic" data-parallax><Pic name={s.image} alt={s.imageAlt} sizes="(min-width: 900px) 45vw, 100vw" /></div>
             : <div class="pic pic-type"><span class="d1">{s.district}</span><Logo kind="cat" class="st-cat" /></div>}
         </div>
         <div class="st-txt">

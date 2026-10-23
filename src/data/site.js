@@ -31,7 +31,8 @@ export const studios = [
     classes: ['pilates-may', 'pilates-tham'],
     formats: '1:1 và 1:2',
     note: 'Studio nhỏ, chỉ dạy lớp kèm riêng 1:1 và 1:2.',
-    image: null,
+    image: 'studio-cong-quynh',
+    imageAlt: 'Phòng máy Cadillac và Reformer ở Nuseva Cống Quỳnh',
   },
   {
     id: 'phan-dang-luu',
@@ -46,6 +47,7 @@ export const studios = [
     formats: '1:1, 1:2 và lớp nhóm 4–6 người',
     note: 'Hai phòng tập: phòng máy và phòng thảm có gióng barre. Có thêm lớp nhóm.',
     image: 'mat-tien-cs2',
+    imageAlt: 'Mặt tiền Nuseva Phan Đăng Lưu',
     equipment: ['Reformer', 'Cadillac', 'Wunda Chair', 'Ladder Barrel', 'Spine Corrector'],
   },
 ];

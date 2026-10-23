@@ -79,7 +79,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 }
 
 /* trạng thái đầu của màn mở trang, tránh nháy trước khi JS chạy */
-.js [data-mast-logo]{clip-path:inset(0 100% 0 0)}
+.js [data-mast-logo]{opacity:0;filter:blur(22px)}
 .js [data-mast-cat]{opacity:0}
 .js [data-mast-sub]>*{opacity:0}
-@media (prefers-reduced-motion:reduce){.js [data-mast-logo]{clip-path:none}.js [data-mast-cat],.js [data-mast-sub]>*{opacity:1}}
+@media (prefers-reduced-motion:reduce){.js [data-mast-logo]{opacity:1;filter:none}.js [data-mast-cat],.js [data-mast-sub]>*{opacity:1}}

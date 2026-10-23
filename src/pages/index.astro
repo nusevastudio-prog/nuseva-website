@@ -126,7 +126,7 @@ const gallery = [
         {studios.map((s) => (
           <article class="std-card" data-reveal>
             {s.image ? (
-              <div class="std-pic" data-parallax><Pic name={s.image} alt={`Mặt tiền ${s.name}`} sizes="(min-width: 900px) 46vw, 100vw" /></div>
+              <div class="std-pic" data-parallax><Pic name={s.image} alt={s.imageAlt} sizes="(min-width: 900px) 46vw, 100vw" /></div>
             ) : (
               <div class="std-pic std-type"><span class="d2">{s.district}</span><Logo kind="cat" class="std-cat" /></div>
             )}
