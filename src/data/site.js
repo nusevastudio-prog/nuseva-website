@@ -263,3 +263,26 @@ export const nav = [
   { href: 'tin-tuc', label: 'Blog' },
   { href: 'lien-he', label: 'Liên hệ' },
 ];
+
+// Cho thuê phòng tập (theo bảng giá thuê phòng của Nuseva)
+export const rental = {
+  forWho: 'Dành cho huấn luyện viên Pilates, Yoga, Barre, Dance cần chỗ dạy học viên riêng.',
+  groups: [
+    {
+      title: 'Có máy Pilates và dụng cụ',
+      rows: [['Lớp 1:1', '120.000đ / giờ'], ['Lớp 1:2', '150.000đ / giờ']],
+    },
+    {
+      title: 'Chỉ thuê phòng, không gồm máy và dụng cụ',
+      note: 'Chỉ có ở Phan Đăng Lưu',
+      rows: [['1 tiếng', '100.000đ'], ['2 tiếng', '190.000đ'], ['3 tiếng', '280.000đ']],
+    },
+  ],
+  notes: [
+    'Mua combo 10 buổi tặng 1 buổi.',
+    'Giảm 5% khi đặt lịch trong khung 13:00 – 16:00.',
+    'Ưu tiên đặt lịch theo tuần.',
+    'Đổi hoặc huỷ buổi báo trước ít nhất 1 tiếng.',
+  ],
+};
+

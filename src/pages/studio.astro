@@ -43,6 +43,13 @@ const cname = (slug) => classes.find((c) => c.slug === slug).name;
     </section>
   ))}
 
+  <section class="wrap rent-link" data-reveal>
+    <div>
+      <h2 class="d3">Huấn luyện viên cần chỗ dạy?</h2>
+      <p>Nuseva cho thuê phòng tập theo giờ, có hoặc không kèm máy Pilates. Từ 100.000đ/giờ.</p>
+    </div>
+    <a class="btn btn-wine" href={u('bang-gia') + '#thue-phong'}>Xem giá thuê phòng</a>
+  </section>
   <CtaBand />
 </Base>
 <style>
@@ -66,4 +73,6 @@ const cname = (slug) => classes.find((c) => c.slug === slug).name;
   .g3{grid-column:2/6;aspect-ratio:9/14}
   .g4{grid-column:6/13;aspect-ratio:16/10;align-self:end}
   @media (max-width:899px){.st-in{grid-template-columns:1fr}.st-alt .st-pic{order:0}.gal{grid-template-columns:1fr}.g1,.g2,.g3,.g4{grid-column:auto;margin:0}dl div{grid-template-columns:110px 1fr}}
+  .rent-link{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;padding:clamp(28px,4vw,48px);margin-bottom:clamp(64px,8vw,120px);background:var(--paper);border-radius:var(--r)}
+  .rent-link p{margin-top:8px;color:var(--caramel);max-width:52ch}
 </style>

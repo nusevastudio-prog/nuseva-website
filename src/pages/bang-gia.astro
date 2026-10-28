@@ -3,9 +3,9 @@ import Base from '../layouts/Base.astro';
 import PageHero from '../components/PageHero.astro';
 import Pic from '../components/Pic.astro';
 import CtaBand from '../components/CtaBand.astro';
-import { prices, policies, site } from '../data/site.js';
+import { prices, policies, site, rental } from '../data/site.js';
 ---
-<Base title="Bảng giá" description="Giá tập Pilates ở Nuseva: kèm riêng 1:1 từ 420k/buổi, kèm đôi 1:2 từ 220k/buổi, lớp nhóm từ 130k/buổi. Buổi lẻ đầu tiên giảm 50%.">
+<Base title="Bảng giá" description="Giá tập Pilates ở Nuseva: kèm riêng 1:1 từ 420k/buổi, kèm đôi 1:2 từ 220k/buổi, lớp nhóm từ 130k/buổi. Buổi lẻ đầu tiên giảm 50%. Có cho huấn luyện viên thuê phòng tập từ 100k/giờ.">
   <PageHero title="Bảng giá" intro="Giá dưới đây là giá thấp nhất cho 1 buổi 60 phút của từng hình thức. Buổi lẻ đầu tiên giảm 50%." />
 
   <section class="wrap">
@@ -36,6 +36,33 @@ import { prices, policies, site } from '../data/site.js';
     </div>
   </section>
 
+  <section class="rent" id="thue-phong">
+    <div class="wrap">
+      <div class="rent-head">
+        <p class="rent-k" data-reveal>Cho thuê studio</p>
+        <h2 class="d2" data-split>Thuê phòng tập ở Nuseva</h2>
+        <p class="sub" data-reveal>{rental.forWho}</p>
+      </div>
+      <div class="rent-grid" data-stagger>
+        {rental.groups.map((g) => (
+          <article class="rent-card">
+            <h3 class="d4">{g.title}</h3>
+            {g.note && <p class="rent-note">{g.note}</p>}
+            <dl>{g.rows.map(([k, v]) => <div><dt>{k}</dt><dd>{v}</dd></div>)}</dl>
+          </article>
+        ))}
+      </div>
+      <div class="rent-foot">
+        <ul data-reveal>{rental.notes.map((n) => <li>{n}</li>)}</ul>
+        <div class="rent-act" data-reveal>
+          <p>Giờ nào còn trống thì nhắn Nu hỏi trước nha.</p>
+          <a class="btn btn-cream" href={site.zalo} target="_blank" rel="noopener">Nhắn Zalo đặt phòng</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="sp"></div>
   <div class="wrap"><div class="band" data-parallax><Pic name="lo-xo-mau" alt="Lò xo màu của máy Reformer" sizes="100vw" /></div></div>
   <div class="sp"></div>
   <CtaBand />
@@ -56,5 +83,21 @@ import { prices, policies, site } from '../data/site.js';
   .pol dd{margin-top:6px;color:var(--caramel)}
   .band{height:clamp(280px,46vh,520px);border-radius:var(--r);overflow:hidden}
   .sp{height:clamp(80px,10vw,140px)}
-  @media (max-width:899px){.cards,.two{grid-template-columns:1fr}.card{min-height:300px}}
+  .rent{background:#6B6446;color:var(--paper);padding:clamp(72px,9vw,128px) 0;scroll-margin-top:72px}
+  .rent-k{font:400 18px/1.3 var(--display);color:var(--batter);margin-bottom:14px}
+  .rent .sub{color:var(--paper);opacity:.9;max-width:56ch}
+  .rent-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:8px}
+  .rent-card{background:rgba(251,245,236,.1);border:1px solid rgba(251,245,236,.25);border-radius:var(--r);padding:clamp(24px,3vw,40px)}
+  .rent-card h3{color:var(--paper)}
+  .rent-note{font-size:13px;color:var(--batter);margin-top:6px}
+  .rent-card dl{margin-top:20px}
+  .rent-card dl div{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:16px 0;border-top:1px solid rgba(251,245,236,.25)}
+  .rent-card dt{font-size:15px}
+  .rent-card dd{font:400 clamp(24px,2.4vw,32px)/1 var(--display)}
+  .rent-foot{display:grid;grid-template-columns:1.3fr 1fr;gap:32px;margin-top:40px;align-items:end}
+  .rent-foot ul{list-style:none;font-size:15px;line-height:1.7}
+  .rent-foot li{padding-left:18px;position:relative}
+  .rent-foot li::before{content:'';position:absolute;left:0;top:.7em;width:6px;height:6px;border-radius:50%;background:var(--batter)}
+  .rent-act p{margin-bottom:16px;opacity:.9}
+  @media (max-width:899px){.cards,.two,.rent-grid,.rent-foot{grid-template-columns:1fr}.card{min-height:300px}}
 </style>
