@@ -17,7 +17,7 @@ export const site = {
   founded: 2025,
   // Điền ID khi có để bật đo lường. Để trống thì không chèn mã.
   ga4: '',
-  metaPixel: '',
+  metaPixel: '4170819046552340',
 };
 
 export const studios = [
